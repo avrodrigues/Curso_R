@@ -1,37 +1,17 @@
-## Welcome to GitHub Pages
+# Informações Gerais
+Aqui no Classroom serão postadas todos materiais referentes ao Curso Analises Ecológicas no R. 
+Em cada tópico há o planejamento para aquele encontro e os exercícios semanais, dê uma olhadinha lá.
+Poste as dúvidas que surgirem durante os exercícios no tópico "Tire suas dúvidas".
 
-You can use the [editor on GitHub](https://github.com/avrodrigues/avrodrigues.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+> Baixe o R: https://www.r-project.org/ 
+> Baixe o RStudio: https://www.rstudio.com/products/rstudio/download/
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Instale os dois programas em seu computador. Primeiro instale o R e depois o RStudio, pois o RStudio necessita do R para funcionar.
 
-### Markdown
+# Objetivo
+Capacitar os alunos utilizar o R como ferramenta para a análise de dados ecológicos;
+O foco principal do curso é fornecer subsídios para o entendimento da lógica por traz das operações no R, com maior aprofundamento na linguagem R;
+Conceitos estatísticos e ecológicos serão abordados superficialmente, portanto os participantes devem possuir conhecimento prévio sobre esses temas. 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/avrodrigues/avrodrigues.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Formato do curso
+Um encontro semanal com 4 hr/aula, com atividades adicionais
