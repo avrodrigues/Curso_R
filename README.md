@@ -3,8 +3,8 @@ Aqui no Classroom serão postadas todos materiais referentes ao Curso Analises E
 Em cada tópico há o planejamento para aquele encontro e os exercícios semanais, dê uma olhadinha lá.
 Poste as dúvidas que surgirem durante os exercícios no tópico "Tire suas dúvidas".
 
-> Baixe o R: https://www.r-project.org/ 
-> Baixe o RStudio: https://www.rstudio.com/products/rstudio/download/
+> Baixe o R: https://www.r-project.org/  
+  Baixe o RStudio: https://www.rstudio.com/products/rstudio/download/
 
 Instale os dois programas em seu computador. Primeiro instale o R e depois o RStudio, pois o RStudio necessita do R para funcionar.
 
