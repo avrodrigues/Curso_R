@@ -1,8 +1,7 @@
 theme: jekyll-theme-dinky
 title: Curso R para analises ecológicas
 description: Arthur V. Rodrigues - Junho 2017
-
-nav_bar:
+navbar:
   title: "My Website"
   type: inverse
   left:
@@ -12,20 +11,3 @@ nav_bar:
     - text: "About"
       icon: fa-info
       href: about.html
-    - text: "More"
-      icon: fa-gear
-      menu:
-        - text: "Heading 1"
-        - text: "Page A"
-          href: page_a.html
-        - text: "Page B"
-          href: page_b.html
-        - text: "---------"
-        - text: "Heading 2"
-        - text: "Page C"
-          href: page_c.html
-        - text: "Page D"
-          href: page_d.html
-  right:
-    - icon: fa-question fa-lg
-      href: https://example.com
