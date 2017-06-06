@@ -6,10 +6,13 @@ Atividade de aprendizado
 Comandos básicos:
 
 No Script: `Ctrl + R` (Windons) ou `Ctrl + ENTER` (Linux/mac) - *Executa o comando. Executa a linha de código ou somente o campo selecionado.*
+
 `Shift + Seta para cima/baixo` - *Seleciona uma linha de código*
+
 `Ctrl + Shift + Seta para direita/esquerda` - *Seleciona por blocos de código*
 
 No Console: `ENTER` - *Executa um comando*
+
 `Seta para cima` - *recupera comandos já executados*
 
 Atividades:
@@ -21,10 +24,13 @@ Atividades:
 3 - Algumas funções podem ser utilizadas para colher informações sobre os dados. Como o comprimento do objeto, as dimensões de uma tabela ou matriz, a classe a que o objeto pertence ou ainda a estrutura do objeto. Utilize as funções abaixo com todos os objetos criados pelo script para entender como elas funcionam:
 
 `length(x)`
+
 `dim(x)`
-`str(x)`
-`class(x)` `ncol(x)`
-`nrow(x)`
+
+`str(x)`  
+`class(x)`   
+`ncol(x)`  
+`nrow(x)`  
 
 4 - Operações de cálculo básicas podem ser realizadas com o R utilizando os simbolos `+`, `-`, `*` e `/`. Exponenciais são precedidos de `^`.
 
