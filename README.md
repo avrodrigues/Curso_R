@@ -23,7 +23,7 @@ Um encontro semanal com 4 hr/aula, com atividades adicionais.
 ## Aula 1
 
 R básico  
-[Gráficos básicos](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Gr%C3%A1ficosMarkdown.md)  
+[Gráficos básicos](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/Gr%C3%A1ficosMarkdown.md)  
 Atividades de apendizado  
 Desafio Semanal  
 
