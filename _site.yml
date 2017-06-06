@@ -1,0 +1,22 @@
+navbar:
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Before we start"
+      href: Aula 1/GráficosMarkdown.md
+    
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/avrodrigues/avrodrigues.github.io
+output_dir: "."
+exclude: ["CONTRIBUT*.md","index.md","README.md","*.db"]
+include: ["*.Rmd","LICENSE.md"]
+output:
+  html_document:
+    highlight: pygments
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+      after_body: footer.html
+css: style.css
