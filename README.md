@@ -22,10 +22,10 @@ Um encontro semanal com 4 hr/aula, com atividades adicionais.
 
 ## Aula 1
 
-[R básico](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/R%20b%C3%A1sico.pdf)  
-[Gráficos básicos](GráficosMarkdown.html)  
+[R básico](R básico.pdf)  
+[Gráficos básicos](GráficosMarkdown.md)  
 [Atividades de apendizado](Atividade_de_aprendizado.md)  
-[Desafio Semanal](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/Desafio_Aula_1.md)  
+[Desafio Semanal](Desafio_Aula_1.md)  
 
 ## Aula 2 
 
