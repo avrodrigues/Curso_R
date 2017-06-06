@@ -9,10 +9,9 @@ Conceitos estatísticos e ecológicos serão abordados superficialmente, portant
 Aqui no Github serão postadas todos materiais referentes ao Curso Analises Ecológicas no R. 
 Em cada tópico baixo há o planejamento para aquele encontro e os exercícios semanais, dê uma olhadinha lá.
 
-Antes de começar 
+Antes de começar:  
 
-> Antes de começar  
-Baixe o R: https://www.r-project.org/  
+> Baixe o R: https://www.r-project.org/  
 Baixe o RStudio: https://www.rstudio.com/products/rstudio/download/
 
 Instale os dois programas em seu computador. Primeiro instale o R e depois o RStudio, pois o RStudio necessita do R para funcionar.
@@ -30,24 +29,24 @@ Desafio Semanal
 
 ## Aula 2 
 
-Importar dados
-Manipulação de dados
-Pacote `dplyr` e funções `apply`
-Desafio Semanal
+Importar dados  
+Manipulação de dados  
+Pacote `dplyr` e funções `apply`  
+Desafio Semanal  
 
 ## Aula 3
 
-Tabela fitossociológica
-Indíces de diversidade e similaridade
-Testes de pressupostos: Normalidade e homogeneidade
-Testes paramétricos: Anova, Tukey, Teste-T
-Desafio Semanal
+Tabela fitossociológica  
+Indíces de diversidade e similaridade  
+Testes de pressupostos: Normalidade e homogeneidade  
+Testes paramétricos: Anova, Tukey, Teste-T  
+Desafio Semanal  
 
 ## Aula 4
 
-Agrupamento (cluster analisis)
-Ordenação (PCA, RDA, NMDS)
-Desafio Final
+Agrupamento (cluster analisis)  
+Ordenação (PCA, RDA, NMDS)  
+Desafio Final  
 
 
 
