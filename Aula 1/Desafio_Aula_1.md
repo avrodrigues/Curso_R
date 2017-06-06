@@ -17,4 +17,4 @@ A partir desses dois objetos crie: 1 - Um gráfico de pontos, 2 - Um gráfico bo
 Para completar essa tarefa insira dois anexos: o Script usado (Nome\_do\_Script.R) e a Imagem criada (imagem\_gráficos.jpeg) no **Classroom** até a data limite.
 
 O gráfico final deve ser semelhante a este:
-![](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/Desafio_Aula_1.md)
+![](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/Tarefa Aula 1.jpeg)
