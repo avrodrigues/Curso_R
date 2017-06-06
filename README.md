@@ -11,7 +11,7 @@ Em cada tópico baixo há o planejamento para aquele encontro e os exercícios s
 
 Antes de começar:  
 
-> Baixe o R: [https://www.r-project.org/](https://www.r-project.org/)
+> Baixe o R: [https://www.r-project.org/](https://www.r-project.org/)  
 Baixe o RStudio: [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
 
 Instale os dois programas em seu computador. Primeiro instale o R e depois o RStudio, pois o RStudio necessita do R para funcionar.
