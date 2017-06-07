@@ -1,13 +1,8 @@
-theme: jekyll-theme-slate
+
 title: Curso R para analises ecológicas
 description: Arthur V. Rodrigues - Junho 2017
-navbar:
-  title: "My Website"
-  type: inverse
-  left:
-    - text: "Home"
-      icon: fa-home
-      href: index.html
-    - text: "About"
-      icon: fa-info
-      href: about.html
+
+header:
+    image_fullwidth: "unsplash_brooklyn-bridge_header.jpg"
+    caption: This is a caption for the header image with link
+    caption_url: https://unsplash.com/
