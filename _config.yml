@@ -1,8 +1,8 @@
-
+layout: page-fullwidth
 title: Curso R para analises ecológicas
 description: Arthur V. Rodrigues - Junho 2017
 
 header:
-    image_fullwidth: "unsplash_brooklyn-bridge_header.jpg"
+    image_fullwidth: "roman-mager-59976.jpg"
     caption: This is a caption for the header image with link
     caption_url: https://unsplash.com/
