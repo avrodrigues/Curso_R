@@ -6,3 +6,5 @@ header:
     image_fullwidth: "roman-mager-59976.jpg"
     caption: This is a caption for the header image with link
     caption_url: https://unsplash.com/
+
+theme: jekyll-theme-cayman
