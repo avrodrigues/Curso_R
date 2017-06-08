@@ -29,7 +29,7 @@ Um encontro semanal com 4 hr/aula, com atividades adicionais.
 
 ## Aula 2 
 
-[Importar dados](importar e exportar dados.md)  
+[Importar dados](importar_e_exportar_dados.md)  
 Manipulação de dados  
 Pacote `dplyr` e funções `apply`  
 Desafio Semanal  
