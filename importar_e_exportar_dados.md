@@ -5,7 +5,9 @@ Tabule os seus dados de maneira organizada
 ------------------------------------------
 
 Há várias formas de tabular os dados de uma pesquisa, mas nem sempre a tabulação que lhe parece lógica esta organizada de maneira que os programas possam entender e processar os dados.   
+
 Ao tabular seus dados ordene as observações nas linhas e as variáveis em cada coluna.  
+
 Por exemplo, estamos realizando um inventário florestal onde cada indivíduo amostrado é uma observação. Assim, cada linha da tabela representa o indivíduo que tem um nome científico, foi coletado em tal parcela e tem um valor de circunferencia à altura do peito. Cada uma dessas caracteristicas será uma coluna da sua tabela.  
 
 | Espécie                 |  Parcela|    CAP|
