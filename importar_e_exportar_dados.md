@@ -4,9 +4,9 @@ Importar e exportar dados
 Tabule os seus dados de maneira organizada
 ------------------------------------------
 
-Há várias formas de tabular os dados de uma pesquisa, mas nem sempre a tabulação que lhe parece lógica esta organizada de maneira que os programas possam entender e processar os dados.
-Ao tabular seus dados ordene as observações nas linhas e as variáveis em cada coluna.
-Por exemplo, estamos realizando um inventário florestal onde cada indivíduo amostrado é uma observação. Assim, cada linha da tabela representa o indivíduo que tem um nome científico, foi coletado em tal parcela e tem um valor de circunferencia à altura do peito. Cada uma dessas caracteristicas será uma coluna da sua tabela.
+Há várias formas de tabular os dados de uma pesquisa, mas nem sempre a tabulação que lhe parece lógica esta organizada de maneira que os programas possam entender e processar os dados.   
+Ao tabular seus dados ordene as observações nas linhas e as variáveis em cada coluna.  
+Por exemplo, estamos realizando um inventário florestal onde cada indivíduo amostrado é uma observação. Assim, cada linha da tabela representa o indivíduo que tem um nome científico, foi coletado em tal parcela e tem um valor de circunferencia à altura do peito. Cada uma dessas caracteristicas será uma coluna da sua tabela.  
 
 | Espécie                 |  Parcela|    CAP|
 |:------------------------|--------:|------:|
@@ -25,10 +25,10 @@ Usuários iniciantes de R podem ter dificuldade em importar os dados o que acaba
 
 Então aqui vão algumas dicas:
 
--   Certifique qual a extensão em que seus dados estão salvos
--   Certifique qual é o simbolo para decimal que está sendo usado (`.` ou `,`)
--   Certifique qual é o simbolo para a separação das colunas (`tabulação`, `;`, `.`), no caso de arquivos `.csv`ou `.txt`
--   Certifique qual a pasta de trabalho que o R está configurado (execute `getwd()`)
+-   Verifique qual é a extensão em que seus dados estão salvos
+-   Verifique qual é o simbolo para decimal que está sendo usado (`.` ou `,`)
+-   Verifique qual é o simbolo para a separação das colunas (`tabulação`, `;`, `.`), no caso de arquivos `.csv`ou `.txt`
+-   Verifique qual a pasta de trabalho que o R está configurado (execute `getwd()`)
 
 Há algumas funções que executam a importação de dados como `read.table`, `read.csv` e `read.csv2`. Para arquivos em formato excel (`.xls`,`.xlsx`) uma opção é a função `read_excel` do pacote `readxl`.
 
@@ -92,6 +92,7 @@ Baixe [esses dados em .zip](FMA.zip), e extraia na pasta de trabalho atual do R.
 Para importar dados, primeiro instale e carrege o pacote:
 
 ``` r
+install.packages("readxl")
 library(readxl)
 ```
 
