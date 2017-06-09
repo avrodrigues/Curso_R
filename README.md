@@ -1,7 +1,9 @@
 # Objetivo 
 
 Capacitar os alunos utilizar o R como ferramenta para a análise de dados ecológicos;  
+
 O foco principal do curso é fornecer subsídios para o entendimento da lógica por traz das operações no R, com maior aprofundamento na linguagem R;  
+
 Conceitos estatísticos e ecológicos serão abordados superficialmente, portanto os participantes devem possuir conhecimento prévio sobre esses temas.  
 
 # Informações Gerais
