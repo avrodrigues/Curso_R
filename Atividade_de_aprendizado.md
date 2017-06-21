@@ -14,7 +14,7 @@ No Console: `ENTER` - *Executa um comando*
 
 Atividades:
 
-1 - Depois de [baixar](script_inicial.R) e abrir o script no RStudio, execute todos os comandos.
+1 - Depois de [baixar](avrodrigues.github.io/Aula 1/script_inicial.R ) e abrir o script no RStudio, execute todos os comandos.
 
 2 - Observe que no campo do ambiente global foram criados objetos, separados por tipo (**data**, **values**). São listados neste campo informações básicas sobre os objetos. Explore as informações contidas nessa área do RStudio.
 
