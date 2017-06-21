@@ -7,4 +7,4 @@ header:
     caption: This is a caption for the header image with link
     caption_url: https://unsplash.com/
 
-theme: jekyll-theme-cayman
+theme: jekyll-theme-merlot
