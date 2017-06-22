@@ -74,11 +74,11 @@ onde:
 Exemplo:
 
 ``` r
-vegetação <- c("Floresta Ombrófila Densa", 
+vegetacao <- c("Floresta Ombrófila Densa", 
                "Floresta Ombrófila Mista", 
                "Floresta Estacional Decidual", 
                "Restinga")
-substr(vegetação, 1, 8)
+substr(vegetacao, 1, 8)
 ```
 
     ## [1] "Floresta" "Floresta" "Floresta" "Restinga"
