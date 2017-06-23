@@ -67,10 +67,11 @@ str(substr)
 
     ## function (x, start, stop)
 
-onde:
-`x` é um vetor de caracteres  
-`start` é a posição onde inicia a seleção/extração  
-`end` é a posição onde finaliza a seleção/extração  
+onde:  
+
+* `x` é um vetor de caracteres  
+* `start` é a posição onde inicia a seleção/extração  
+* `end` é a posição onde finaliza a seleção/extração  
 
 Exemplo:
 
