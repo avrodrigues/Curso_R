@@ -1,7 +1,5 @@
 theme: jekyll-theme-minimal
 title: Curso R para Analises Ecológicas
 description: Arthur Vinicius Rodrigues
-
-nav_bar: true
-  - text: home
+profile: BOOL
 
