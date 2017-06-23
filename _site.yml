@@ -1,7 +1,9 @@
 navbar:
   left:
-    - text: "Home"
+    - text: "Apresentação"
       href: README.md
+    - text: "Aula 1"
+      href: Desafio_Aula_1.md
         
   right:
     - icon: fa-github fa-lg
