@@ -1,58 +1,14 @@
-# Objetivo 
+# Jekyll-Pithy
 
-Capacitar os alunos utilizar o R como ferramenta para a análise de dados ecológicos;  
+Jekyll-Pithy is a theme for Jekyll. Here is [my blog](http://wenva.github.io) which use this theme.
 
-O foco principal do curso é fornecer subsídios para o entendimento da lógica por traz das operações no R, com maior aprofundamento na linguagem R;  
+![image](https://raw.githubusercontent.com/smallmuou/Jekyll-Pithy/master/images/Jekyll-Pithy.png)
 
-Conceitos estatísticos e ecológicos serão abordados superficialmente, portanto os participantes devem possuir conhecimento prévio sobre esses temas.  
+### Usage
+* Clone it.
+* cd Jekyll-Pithy, and Run "jekyll serve"(You must install [jekyll](http://jekyllrb.com/) first)
+* Open web browser and enter "http://127.0.0.1:4000/", you can see the web page like snapshot above.
+* If you want to host you blog on Github Page, you can follow the steps provide by Github.
 
-# Informações Gerais
-
-Aqui no Github serão postadas todos materiais referentes ao Curso Analises Ecológicas no R.   
-Em cada tópico baixo há o planejamento para aquele encontro e os exercícios semanais, dê uma olhadinha lá.  
-
-Antes de começar:  
-
-> Baixe o R: [https://www.r-project.org/](https://www.r-project.org/)  
-Baixe o RStudio: [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
-
-Instale os dois programas em seu computador. Primeiro instale o R e depois o RStudio, pois o RStudio necessita do R para funcionar.
-
-# Formato do curso
-
-Um encontro semanal com 4 hr/aula, com atividades adicionais.
-
-## Aula 1
-
-[R básico](R básico.pdf)  
-[Gráficos básicos](GráficosMarkdown.md)  
-[Atividades de apendizado](Atividade_de_aprendizado.md)  
-[Desafio Semanal](Desafio_Aula_1.md)  
-
-## Aula 2 
-
-[Importar dados](importar_e_exportar_dados.md)  
-[Manipulação de dados](Explorando_e_manipulando_Matrizes_e_Data_Frames.md)  
-[Pacote `dplyr`](Pacote_dplyr.md)  
-[funções `apply`](Funções_apply.md)  
-[Desafio Semanal](Desafio_2.md)  
-
-## Aula 3
-
-Tabela fitossociológica  
-Indíces de diversidade e similaridade  
-Testes de pressupostos: Normalidade e homogeneidade  
-Testes paramétricos: Anova, Tukey, Teste-T  
-Desafio Semanal  
-
-## Aula 4
-
-Agrupamento (cluster analisis)  
-Ordenação (PCA, RDA, NMDS)  
-Desafio Final  
-
-
-
-
-
-
+### License
+The code follows MIT License.
