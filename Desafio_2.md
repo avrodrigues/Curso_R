@@ -6,9 +6,10 @@ Manipulação e exploração de dados
 
 A proposta aqui é utilizar um banco de dados já publicado para exercitar a manipulação de dados, a geração de novos data frames e de estatísticas descritivas.
 
-Para isso, utilizaremos dados do artigo *Tree Diversity and Dynamics of the Forest of Seu Nico, Viçosa, Minas Gerais, Brazil* (Gastauer et al 2015) que você pode conferir [aqui](http://bdj.pensoft.net/article/5425/list/5/). Baixe e extraia para a pasta de trabalho do R o Material Suplementar 2.
+Para isso, utilizaremos dados do artigo *Tree Diversity and Dynamics of the Forest of Seu Nico, Viçosa, Minas Gerais, Brazil* (Gastauer et al 2015) que você pode conferir [aqui](http://bdj.pensoft.net/article/5425/list/5/).  
+Baixe e extraia para a pasta de trabalho do R o Material Suplementar 2.
 
-Resumindo, este artigo disponibiliza dados de parcelas permanentes em uma área total de 1 ha, dividida em 100 subparcelas de 10 x 10 m. A área foi inventariada em 2001 e em 2010.
+Em suma, este artigo disponibiliza dados de parcelas permanentes em uma área total de 1 ha, dividida em 100 subparcelas de 10 x 10 m. A área foi inventariada em 2001 e em 2010.
 
 O desafio é gerar dois data frames, um com dados de 2001 e com dados de 2010. Cada data frame deve conter os indivíduos como linhas e três colunas.
 As colunas devem ter como nome:
@@ -67,9 +68,9 @@ str(substr)
     ## function (x, start, stop)
 
 onde:
-`x` é um vetor de caracteres
-`start` é a posição onde inicia a seleção/extração
-`end` é a posição onde finaliza a seleção/extração
+`x` é um vetor de caracteres  
+`start` é a posição onde inicia a seleção/extração  
+`end` é a posição onde finaliza a seleção/extração  
 
 Exemplo:
 
