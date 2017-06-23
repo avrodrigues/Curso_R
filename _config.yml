@@ -3,6 +3,6 @@ title: Curso R para Analises Ecológicas
 description: Arthur Vinicius Rodrigues
 webrick:
   headers:
-    My-Header: My-Value
-    My-Other-Header: My-Other-Value
+    My-Header: 2
+    My-Other-Header: 4
 
