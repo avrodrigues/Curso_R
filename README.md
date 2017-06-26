@@ -1,3 +1,8 @@
+---
+title: Curso R para Análises Ecológicas
+layout: lesson
+---
+
 # Objetivo 
 
 Capacitar os alunos utilizar o R como ferramenta para a análise de dados ecológicos;  
