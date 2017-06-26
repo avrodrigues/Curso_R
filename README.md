@@ -1,6 +1,5 @@
 ---
 title: Curso R para Análises Ecológicas
-layout: lesson
 ---
 
 # Objetivo 
