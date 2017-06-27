@@ -40,8 +40,8 @@ Um encontro semanal com 4 hr/aula, com atividades adicionais.
 
 ## Aula 3
 
-Tabela fitossociológica  
-Indíces de diversidade e similaridade  
+[Fitossociologia](Fitossociologia.md)
+Estatística Univariada
 Testes de pressupostos: Normalidade e homogeneidade  
 Testes paramétricos: Anova, Tukey, Teste-T  
 Desafio Semanal  
