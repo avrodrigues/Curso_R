@@ -99,13 +99,13 @@ Uma solução para este problema é criar uma curva que aleatorize a ordem de in
 Para isso alteramos o argumento `method` para `"random"`
 
 ``` r
-plot(specaccum(floresta.2001, "random", main = "2001"))
+plot(specaccum(floresta.2001, "random"), main = "2001")
 ```
 
 ![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ``` r
-plot(specaccum(floresta.2010, "random", main = "2010"))
+plot(specaccum(floresta.2010, "random"), main = "2010")
 ```
 
 ![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-6-2.png)
