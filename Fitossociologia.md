@@ -36,7 +36,7 @@ str(seu.nico.2010)
 
 Primeiro vamos analizar o contexto geral das amostragens, verificando se há sulficiência amostral e estimando a riqueza total da área.
 
-Num segundo momento, iremos dividir as comunidades de 2001 e 2010 em dois componentes: a regeneração e os adultos. Com base nesses conjuntos de dados construiremos a tabela fitossociológica, exploraremos a diversidade e similaridade taxonômica entre os componentes e os momentos no tempo.
+Num segundo momento, iremos dividir as comunidades de 2001 e 2010 em dois componentes: a regeneração e os adultos. Com base nesses conjuntos de dados construiremos a tabela fitossociológica, exploraremos a diversidade e similaridade taxonômica entre os componentes e entre os anos 2001 e 2010
 
 Sulficiência amostral
 ---------------------
@@ -57,7 +57,7 @@ library(vegan)
 
     ## This is vegan 2.4-2
 
-Para atestar se a comunidade foi bem amostrada quanto ao número de espécies podemos gera um gráfico de curva de acúmulo de espécies (ou curva do coletor). No `vegan`, isso é implementado com a função `specaccum`.
+Para atestar se a comunidade foi bem amostrada quanto ao número de espécies podemos gerar um gráfico de curva de acúmulo de espécies (ou curva do coletor). No `vegan`, isso é implementado com a função `specaccum`.
 
 ``` r
 str(specaccum)
@@ -69,7 +69,8 @@ str(specaccum)
 Focaremos nos dois primeiros argumentos desta função (veja a ajuda da função para mais detalhes - `?specaccum`):
 
 -   `comm`: é uma matriz da comunidade com parcelas nas linhas e espécies nas colunas
--   `method`: possui cinco métodos `"collector"`, `"random"`, `"exact"`, `"coleman"`, `"rarefaction"`, `"exact"` encontra a riqueza de espécies esperada (média), `"coleman"` encontra a riqueza esperada de acordo com Coleman et al. 1982, e `"rarefaction"` que encontra a média acumuladada baseada no número de indivíduos ao invés de sítios.
+-   `method`: possui cinco métodos `"collector"`, `"random"`, `"exact"`, `"coleman"`, `"rarefaction"`
+    -   `"exact"` encontra a riqueza de espécies esperada (média), `"coleman"` encontra a riqueza esperada de acordo com Coleman et al. 1982, e `"rarefaction"` que encontra a média acumuladada baseada no número de indivíduos ao invés de sítios.
 
 Para criar uma matriz de espécies por parcelas utilizamos a função `table`.
 
@@ -92,7 +93,7 @@ plot(specaccum(floresta.2010, "collector"), main = "2010")
 
 ![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-5-2.png)
 
-Há um problema em usar este tipo de curva, é que dependendo da ordem em que você adicionas as parcelas no gráfico você pode induzir que a curva fique estável.
+Há um problema em usar este tipo de curva, é que dependendo da ordem em que você adiciona as parcelas no gráfico você pode induzir que a curva fique estável.
 
 Uma solução para este problema é criar uma curva que aleatorize a ordem de inclusão das parcelas para gerar uma média da riqueza e um desvio padrão a cada parcela inclusa.
 
@@ -124,8 +125,8 @@ plot(specaccum(floresta.2010, "random"),main = "2010", col = "blue", ci.type = "
 
 ![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-7-2.png)
 
-Estimativa de riqueza de espécies
----------------------------------
+Riqueza de espécies
+-------------------
 
 Para ver qual a riqueza de espécies em cada ano de amostragem, basta contar quantas colunas o data frame possui.
 
@@ -185,3 +186,49 @@ plot(pool)
 ``` r
 summary(pool, display = "jack2") # mostra os valores estimados com jacknife2
 ```
+
+Para finalizar essa seção vamos construir um gráfico para a amostragem de 2001 que compile a rarefação (curva do coletor randomizada) com as estimativas de riqueza de espécies de chao e jacknife 2.
+
+A construção desse tipo de gráficos requer alguns passos. Primeiro, vamos criar objetos com os valores de cada linha do gráfico utilizando o resultado da função `poolaccum(floresta.2001)`.
+
+Vamos criar um gráfico que contenha as curvas de acúmulo de espécie `S` e dos estimadores de riqueza chao 1 `chao` e jacknife 2 `jack`.
+
+``` r
+S <- summary(pool, display = "S")[[1]]
+chao <- summary(pool, display = "chao")[[1]]
+jack <- summary(pool, display = "jack2")[[1]]
+```
+
+Com a função `plot` criamos o gráfico. Mela configuramos alguns parâmetros gerais da imagem, como o tipo de gráfico (`type`), os limites da eixo y (`ylim`) e os nomes dados aos eixos (`xlab`, `ylab`).
+
+Com o 'plano de fundo' pronto inserimos informações dicionais ao gráfico com as funções `lines`, `legend` e `text`.
+
+Note que alguns parâmetros são comuns as funções, utilize as funções de ajuda para entender como cada uma funciona.
+
+``` r
+plot(jack, type = "line", ylim = c(0, 300), col = "red", 
+     xlab = "Sítios", ylab = "Nº de espécies", las = 1)
+```
+
+    ## Warning in plot.xy(xy, type, ...): gráfico do tipo 'line' vai ser truncado
+    ## para o primeiro caractere
+
+``` r
+lines(S)
+lines(S[,c(1,3)], lty = 2)
+lines(S[,c(1,4)], lty = 2)
+lines(chao,  col = "green")
+
+legend("bottomright", 
+       legend = c("Rarefação", "IC (95%)", "Chao1", "Jacknife2"),
+       lty = c(1, 2, 1, 1), 
+       col = c("black", "black", "green", "red"), 
+       cex = 0.8)
+
+
+y <- c(max(jack[,2]), max(S[,2]), max(chao[,2]))
+texto <- c(round(max(jack[,2]),0), max(S[,2]), round(max(chao[,2]),0))
+text(100, y + 10, texto)
+```
+
+![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-13-1.png)
