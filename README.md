@@ -9,8 +9,8 @@ Conceitos estatísticos e ecológicos serão abordados superficialmente, portant
 
 # Informações Gerais
 
-Aqui no Github serão postadas todos materiais referentes ao Curso Analises Ecológicas no R.   
-Em cada tópico baixo há o planejamento para aquele encontro e os exercícios semanais, dê uma olhadinha lá.  
+Aqui estão postadas todos materiais referentes ao Curso Análises Ecológicas no R.   
+Para cada aula estão disponíveis os materiais utilizados, como textos, scripts, e PDFs. 
 
 Antes de começar:  
 
@@ -23,7 +23,7 @@ Instale os dois programas em seu computador. Primeiro instale o R e depois o RSt
 
 Um encontro semanal com 4 hr/aula, com atividades adicionais.
 
-## Aula 1
+## [Aula 1](Aula1.md)
 
 [R básico](R básico.pdf)  
 [Gráficos básicos](GráficosMarkdown.md)  
