@@ -5,14 +5,13 @@ Gráficos
 > -   Barras
 > -   Boxplot
 > -   Pontos
-> -   Pizza
 
 Histogramas
 ===========
 
-Um histograma apresenta a frequencia que uma classe de valor ocorre em um grupo de dados.
+Um histograma apresenta a frequência com que uma classe de valor ocorre em um grupo de dados.
 
-Como exemplo, vamos criar um vetor com dados de distribuição normal aleatório, usando a função `rnorm`. Como se trata de valores aleatórios usamos a função `set.seed` para fixar os valores aleatórios gerados pela função `rnorm`, assim você conseguirá gerar os mesmos valores aleatórios que utiliarei para gerar os gráficos.
+Como exemplo, vamos criar um vetor com dados de distribuição normal aleatório, usando a função `rnorm`. Como se trata de valores aleatórios usamos a função `set.seed` para fixar os valores aleatórios gerados pela função `rnorm`, assim você conseguirá gerar os mesmos valores aleatórios que utilizarei para gerar os gráficos.
 
 Por fim utilize a função `hist` para gerar o gráfico:
 
@@ -24,7 +23,7 @@ hist(dist.normal)
 
 ![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
-Este foi o gráfico com as opções defalt, podemos aprimorar a visualização de acordo com nossas preferências. Abaixo reeditei o gráfico mostrar alguns argumentos função `hist`
+Este foi o gráfico com as opções default, podemos aprimorar a visualização de acordo com nossas preferências. Abaixo reeditei o gráfico para mostrar alguns argumentos função `hist`
 
 ``` r
 hist(dist.normal, main = "Histograma de distribuição normal
@@ -71,9 +70,9 @@ ordenadas pela maior altura", las = 2, col = "lightgreen",
 Boxplot
 =======
 
-Este tipo de gráfico é útil para comparar valores entre dois ou mais grupos. Uma maneira boa de apresentar testes estatisticos de comparação de médias como ANOVA, por exemplo.
+Este tipo de gráfico é útil para comparar valores entre dois ou mais grupos. Uma maneira boa de apresentar testes estatísticos de comparação de médias como ANOVA, por exemplo.
 
-Para este exemplo vamos carregar os dados de captura de CO2 por *Echinochloa crus-galli*. Esses dados estão disponíveis na função `data`, uma função que contem diversos outros dados que podem ser usados facilmente. Para uma lista completa desses bancos de dados execute o comando `data()`.
+Para este exemplo vamos carregar os dados de captura de CO2 por *Echinochloa crus-galli*. Esses dados estão disponíveis na função `data`, uma função que contém diversos outros dados que podem ser usados facilmente. Para uma lista completa desses bancos de dados execute o comando `data()`.
 
 Visualise os dados com a função `View`.
 
@@ -84,7 +83,7 @@ View(CO2)
 
 Agora criamos os gráficos com a função `boxplot`.
 
-O primeiro argumento desta função é chamado de formula, neste caso funciona assim: `boxplot(valores ~ grupos)`, onde os grupos precisam ser um vetor do tipo fator (*factor*)
+O primeiro argumento desta função é chamado de fórmula, neste caso funciona assim: `boxplot(valores ~ grupos)`, onde os grupos precisam ser um vetor do tipo fator (*factor*)
 
 ``` r
 boxplot(CO2$uptake ~ CO2$Type)
@@ -100,9 +99,9 @@ boxplot(CO2$conc ~ CO2$Type)
 
 ### Função Par
 
-Acho que fica mais interessante e informativo agrupar os dois gráficos em uma só imagem. Para isso usamos a função `par`. Essa é uma função que configura parametros gráficos no R. Ela possui uma lista extensa de argumentos que pode ser utilizado para configurar os mais variados parametros de um gráfico. Veja a ajuda de `par`.
+Acho que fica mais interessante e informativo agrupar os dois gráficos em uma só imagem. Para isso usamos a função `par`. Essa é uma função que configura parametros gráficos no R. Ela possui uma lista extensa de argumentos que podem ser utilizados para configurar os mais variados parâmetros de um gráfico. Veja a ajuda de `par`.
 
-Antes vamos salvar as configuração padrão da função, e depois usar o argumento `mfrow = c(1, 2)` para obter graficos ordenados em uma linha e duas colunas
+Antes vamos salvar a configuração padrão da função, e depois usar o argumento `mfrow = c(1, 2)` para obter gráficos ordenados em uma linha e duas colunas
 
 ``` r
 defaltpar <- par()
@@ -122,10 +121,10 @@ Então voltamos a função `par` para a configuração original.
 par(defaltpar)
 ```
 
-Grafico de pontos
+Gráfico de pontos
 =================
 
-Agora utilizaremos os dados `iris` para gerar gráficos de pontos. `iris` possui valores de comprimento e largura de petalas e sepalas para três espécies do gênero *Iris*.
+Agora utilizaremos os dados `iris` para gerar gráficos de pontos. `iris` possui valores de comprimento e largura de pétalas e sépalas para três espécies do gênero *Iris*.
 
 ``` r
 data("iris")

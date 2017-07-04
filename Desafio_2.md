@@ -84,7 +84,7 @@ str(substr)
 onde:
 `x` é um vetor de caracteres
 `start` é a posição onde inicia a seleção/extração
-`end` é a posição onde finaliza a seleção/extração
+`stop` é a posição onde finaliza a seleção/extração
 
 Exemplo:
 
@@ -100,7 +100,7 @@ substr(vegetacao, 1, 8)
 
 #### Dica 2
 
-Você pode criar um data frame utilizando valores disponiveis em outros objetos usando a função `data.frame` e nomear as colunas diretamente na função `data.frame`.
+Você pode criar um data frame utilizando valores disponíveis em outros objetos usando a função `data.frame` e nomear as colunas diretamente na função `data.frame`.
 
 Veja o exemplo:
 
