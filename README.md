@@ -25,34 +25,8 @@ Um encontro semanal com 4 hr/aula, com atividades adicionais.
 
 ## [Aula 1](Aula1.md)
 
-[R básico](R básico.pdf)  
-[Gráficos básicos](GráficosMarkdown.md)  
-[Atividades de apendizado](Atividade_de_aprendizado.md)  
-[Desafio Semanal](Desafio_Aula_1.md)  
-
 ## [Aula 2](Aula2.md) 
-
-[Importar dados](importar_e_exportar_dados.md)  
-[Manipulação de dados](Explorando_e_manipulando_Matrizes_e_Data_Frames.md)  
-[Pacote `dplyr`](Pacote_dplyr.md)  
-[funções `apply`](Funções_apply.md)  
-[Desafio Semanal](Desafio_2.md)  
 
 ## [Aula 3](Aula3.md)
 
-[Fitossociologia](Fitossociologia.md)  
-Estatística Univariada  
-Testes de pressupostos: Normalidade e homogeneidade  
-Testes paramétricos: Anova, Tukey, Teste-T  
-Desafio Semanal  
-
 ## [Aula 4](Aula4.md)
-
-Agrupamento (cluster analisis)  
-Ordenação (PCA, RDA, NMDS)  
-Desafio Final  
-
-
-
-
-
