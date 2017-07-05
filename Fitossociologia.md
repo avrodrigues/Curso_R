@@ -49,12 +49,6 @@ Carregue o pacote `vegan`. Caso não tenha ele instalado no computador, instale 
 library(vegan)
 ```
 
-    ## Loading required package: permute
-
-    ## Loading required package: lattice
-
-    ## This is vegan 2.4-2
-
 Para atestar se a comunidade foi bem amostrada quanto ao número de espécies podemos gerar um gráfico de curva de acúmulo de espécies (ou curva do coletor). No `vegan`, isso é implementado com a função `specaccum`.
 
 ``` r
@@ -205,21 +199,6 @@ Os dados da Floresta Seu Nico já estão neste formato, só nos resta separá-la
 ``` r
 library(dplyr)
 ```
-
-    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.11).
-    ## Please reinstall dplyr to avoid random crashes or undefined behavior.
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
 ``` r
 str(seu.nico.2001)
 ```
