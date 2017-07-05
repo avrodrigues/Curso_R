@@ -10,14 +10,13 @@ Para isso nomeie os resultados como `seu.nico.2001` e `seu.nico.2010`.
 Ou baixe os dois arquivos (Aqui: [2001](Seu_nico_2001.csv) e [2010](Seu_nico_2010.csv)) e carregue com o código abaixo:
 
 ``` r
-seu.nico.2001 <- read.csv2("Seu_nico_2001.csv")
-seu.nico.2010 <- read.csv2("Seu_nico_2010.csv")
+seu.nico.2001 <- read.csv2("Seu_nico_2001.csv", row.names = 1)
+seu.nico.2010 <- read.csv2("Seu_nico_2010.csv", row.names = 1)
 
 str(seu.nico.2001)
 ```
 
-    ## 'data.frame':    2482 obs. of  4 variables:
-    ##  $ X   : int  1 2 3 4 5 6 7 8 9 10 ...
+    ## 'data.frame':    2482 obs. of  3 variables:
     ##  $ spp : Factor w/ 215 levels "","Alchornea glandulosa",..: 79 211 205 79 87 24 8 191 188 188 ...
     ##  $ parc: Factor w/ 100 levels "FSN_Plot_001",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ dap : num  0.2722 0.0891 0.0477 0.0462 0.2626 ...
@@ -26,8 +25,7 @@ str(seu.nico.2001)
 str(seu.nico.2010)
 ```
 
-    ## 'data.frame':    2529 obs. of  4 variables:
-    ##  $ X   : int  1 2 3 4 5 6 7 8 9 10 ...
+    ## 'data.frame':    2529 obs. of  3 variables:
     ##  $ spp : Factor w/ 213 levels "","Alchornea glandulosa",..: 80 209 202 80 87 24 8 189 186 113 ...
     ##  $ parc: Factor w/ 100 levels "FSN_Plot_001",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ dap : num  0.2885 0.0608 0.0503 0.0541 0.2723 ...
@@ -187,48 +185,58 @@ plot(pool)
 summary(pool, display = "jack2") # mostra os valores estimados com jacknife2
 ```
 
-Para finalizar essa seção vamos construir um gráfico para a amostragem de 2001 que compile a rarefação (curva do coletor randomizada) com as estimativas de riqueza de espécies de chao e jacknife 2.
+Tabela fitossociológica
+-----------------------
 
-A construção desse tipo de gráficos requer alguns passos. Primeiro, vamos criar objetos com os valores de cada linha do gráfico utilizando o resultado da função `poolaccum(floresta.2001)`.
+Os muitos pacotes que o R possui fornecem uma imensa quantidade funções, porém, nem tudo que agente precisa está lá. As vezes, criamos uma sequência de códigos muito particular para o tipo de dados que estamos lidando, e precisamos automatizar a execução desses blocos de códigos, principalmente quando a rotina é muito extensa.
 
-Vamos criar um gráfico que contenha as curvas de acúmulo de espécie `S` e dos estimadores de riqueza chao 1 `chao` e jacknife 2 `jack`.
+Para fazer a tabela fitossociológica vamos utilizar um script que contém uma função que constrói a tabela e outra que mede a similaridade entre duas comunidades.
 
-``` r
-S <- summary(pool, display = "S")[[1]]
-chao <- summary(pool, display = "chao")[[1]]
-jack <- summary(pool, display = "jack2")[[1]]
-```
+Com essas funções criaremos a tabela fitossociológica para os anos de 2001 e 2010 na Fazenda Seu Nico, divididos em componente arbóreo e regeneração.
 
-Com a função `plot` criamos o gráfico. Mela configuramos alguns parâmetros gerais da imagem, como o tipo de gráfico (`type`), os limites da eixo y (`ylim`) e os nomes dados aos eixos (`xlab`, `ylab`).
+Na sequência compararemos a similaridade florística das comunidades entre os anos e entre os componentes.
 
-Com o 'plano de fundo' pronto inserimos informações dicionais ao gráfico com as funções `lines`, `legend` e `text`.
+\[Baixe o Script\] e abra com o R. No script há a descrição das funções, como utilizá-las e como os dados devem estar tabelados para que a função funcione. Carregue as funções, como descrito no Script.
 
-Note que alguns parâmetros são comuns as funções, utilize as funções de ajuda para entender como cada uma funciona.
+Em resumo, precisamos de uma tabela da comunidade onde as linhas são as obervações (indivíduos) e no mínimo três colunas, `parc`, `spp`, `cap` ou `dap`. Acrescente mais colunas se tiver caules multiplos, como `cap1` `cap2` `cap3`ou `dap1` `dap2` `dap3`.
 
-``` r
-plot(jack, type = "line", ylim = c(0, 300), col = "red", 
-     xlab = "Sítios", ylab = "Nº de espécies", las = 1)
-```
-
-    ## Warning in plot.xy(xy, type, ...): gráfico do tipo 'line' vai ser truncado
-    ## para o primeiro caractere
+Os dados da Floresta Seu Nico já estão neste formato, só nos resta separá-las em componetes regeneração e arbóreo. Para isso fazemos um filtro onde os indivíduos com `dap` &lt; 10 cm pertencem ao componente regeneração. Usamos a função `filter`do pacote `dplyr` para isso:
 
 ``` r
-lines(S)
-lines(S[,c(1,3)], lty = 2)
-lines(S[,c(1,4)], lty = 2)
-lines(chao,  col = "green")
-
-legend("bottomright", 
-       legend = c("Rarefação", "IC (95%)", "Chao1", "Jacknife2"),
-       lty = c(1, 2, 1, 1), 
-       col = c("black", "black", "green", "red"), 
-       cex = 0.8)
-
-
-y <- c(max(jack[,2]), max(S[,2]), max(chao[,2]))
-texto <- c(round(max(jack[,2]),0), max(S[,2]), round(max(chao[,2]),0))
-text(100, y + 10, texto)
+library(dplyr)
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-13-1.png)
+    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.11).
+    ## Please reinstall dplyr to avoid random crashes or undefined behavior.
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+str(seu.nico.2001)
+```
+
+    ## 'data.frame':    2482 obs. of  3 variables:
+    ##  $ spp : Factor w/ 215 levels "","Alchornea glandulosa",..: 79 211 205 79 87 24 8 191 188 188 ...
+    ##  $ parc: Factor w/ 100 levels "FSN_Plot_001",..: 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ dap : num  0.2722 0.0891 0.0477 0.0462 0.2626 ...
+
+``` r
+seu.nico.2001.reg <- filter(seu.nico.2001, dap < 10)
+seu.nico.2010.reg <- filter(seu.nico.2010, dap < 10)
+
+seu.nico.2001.arb <- filter(seu.nico.2001, dap >= 10)
+seu.nico.2010.arb <- filter(seu.nico.2010, dap >= 10)
+```
+
+Pronto, dividimos as amostragens em componentes de regeneração e arbóreo.
+
+Agora, com esses objetos em mãos, sua tarefa é utilizar as funções `fitoR` e `similaridade` para criar tabelas fitossociológicas e comparar as comuminidades para entender um pouco da dinâmica florestal na Floresta Seu Nico.
