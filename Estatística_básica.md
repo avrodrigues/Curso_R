@@ -1,7 +1,7 @@
 Estatística básica
 ================
 
-A idéia desse seção é apresentar como rodar análises estatísticas e como utilizar os resultados, assim como apresentar as funções que testam alguns pressupostos das estatísticas paramétricas.
+A ideia desta seção é apresentar as funções do R que realizam as análises estatísticas básicas e testam pressupostos. E também como utilizar os resultados dentro do R para gerar gráficos com legendas.
 
 Neste sentido, demostrarei com fazer Teste-T, Anova, Teste de Tukey, Teste de Correlação e Regressão Linear.
 
@@ -10,31 +10,14 @@ Teste T
 
 O teste T é conduzido no R com a função `t.test`.
 
-Para exemplificar, vamos comparar utilizar os dados de captura de CO2 da por *Echinochloa crus-galli* de acordo com a origem da planta.
+Para exemplificar, vamos utilizar os dados de captura de CO2 da por *Echinochloa crus-galli* e comparar de acordo com a origem da planta.
 
 ``` r
+# carregue os dados
 data("CO2")
-str(CO2)
 ```
 
-    ## Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   84 obs. of  5 variables:
-    ##  $ Plant    : Ord.factor w/ 12 levels "Qn1"<"Qn2"<"Qn3"<..: 1 1 1 1 1 1 1 2 2 2 ...
-    ##  $ Type     : Factor w/ 2 levels "Quebec","Mississippi": 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ Treatment: Factor w/ 2 levels "nonchilled","chilled": 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ conc     : num  95 175 250 350 500 675 1000 95 175 250 ...
-    ##  $ uptake   : num  16 30.4 34.8 37.2 35.3 39.2 39.7 13.6 27.3 37.1 ...
-    ##  - attr(*, "formula")=Class 'formula'  language uptake ~ conc | Plant
-    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
-    ##  - attr(*, "outer")=Class 'formula'  language ~Treatment * Type
-    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
-    ##  - attr(*, "labels")=List of 2
-    ##   ..$ x: chr "Ambient carbon dioxide concentration"
-    ##   ..$ y: chr "CO2 uptake rate"
-    ##  - attr(*, "units")=List of 2
-    ##   ..$ x: chr "(uL/L)"
-    ##   ..$ y: chr "(umol/m^2 s)"
-
-Antes de aplicar o teste T, devemos saber se há homegeneidade das variâncias. Para isso, aplicamos a função `leveneTest` do pacote `car`
+Antes de aplicar o teste T, devemos saber se há homegeneidade das variâncias. Para isso, aplicamos a função `leveneTest` do pacote `car`. É necessário informar apenas
 
 ``` r
 library(car)
@@ -74,3 +57,80 @@ boxplot(CO2$uptake ~ CO2$Type)
 ```
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+Outro pressuposto é que os dados devem ter distribuição normal. Para analisar se os nossos dados têm distribuição normal podemos usar uma feramenta gráfica chamada `qqnorm`. Neste gráfico se os dados são de uma distribuição normal, os pontos ficarão alinhados sobre a linha dos 45º. abaixo temos dois exemplos com amostras de dados normais e não-normais
+
+``` r
+# Distrribuição normal
+data<-rnorm(30, 2,2) 
+qqnorm(data) 
+qqline(data)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+``` r
+#Distribuição não-normal
+data<-runif(30, -4,4) 
+qqnorm(data) 
+qqline(data)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-5-2.png) Podemos ainda testar a hypotese de os dados serem normais pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipotese nula seja confirmada, ou seja, o valor de p deve ser superior a 0,05.
+
+``` r
+quebec <- CO2$uptake[CO2$Type == "Quebec"]
+mississippi <- CO2$uptake[CO2$Type == "Mississippi"]
+
+shapiro.test(quebec)
+```
+
+    ## 
+    ##  Shapiro-Wilk normality test
+    ## 
+    ## data:  quebec
+    ## W = 0.85988, p-value = 0.0001111
+
+``` r
+shapiro.test(mississippi)
+```
+
+    ## 
+    ##  Shapiro-Wilk normality test
+    ## 
+    ## data:  mississippi
+    ## W = 0.93633, p-value = 0.0213
+
+Nossos dados não seguem uma distribuição normal, e portanto não podemos confiar no resultado do teste-t, pois o pressuposto de normalidade dos dados não foi atendido.
+
+Teste Wilcoxon-Mann-Whitney
+---------------------------
+
+Confiar no resultado de um teste paramétrico que não atente os pressupostos aumenta a nossa chance de cometermos erro do tipo I (afirmamos existir diferença quando ela não existe).
+
+A opção não-paramétrica para amostras independentes é o teste de Wilcoxon-Mann-Whitney (função `wilcox.test`), onde não precisamos assumir que os dados possuem distribuição normal.
+
+``` r
+wilcox.test(uptake ~ Type, data = CO2)
+```
+
+    ## Warning in wilcox.test.default(x = c(16, 30.4, 34.8, 37.2, 35.3, 39.2,
+    ## 39.7, : cannot compute exact p-value with ties
+
+    ## 
+    ##  Wilcoxon rank sum test with continuity correction
+    ## 
+    ## data:  uptake by Type
+    ## W = 1489, p-value = 5.759e-08
+    ## alternative hypothesis: true location shift is not equal to 0
+
+O teste confirma que há diferenças entre na captura de CO2 entre as populações de Quebec e Mississippi.
+
+ANOVA
+-----
+
+Enquanto o teste T verifica se há diferença da média de um parâmetro entre dois grupos, com a ANOVA podemos testar se há diferenças entre três ou mais grupos.
+
+Para utilizar o teste ANOVA os dados devem ser de disribuição normal, com variancias homogêneas e as variáveis devem ser independentes.
+
+Como exemplo
