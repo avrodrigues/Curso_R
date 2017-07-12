@@ -121,7 +121,9 @@ hist(quebec)
 hist(mississippi)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-6-1.png) Esses histogramas nada se parecem com o padrão de uma distribuição normal. Apenas com a visualização podemos afirmar que os dados violam o pressuposto de normalidade, ainda assim, podemos ainda testar a hipotese de os dados seguirem a distribuição normal pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipotese nula é que os dados são normais, ou seja, baixos valores de p indicam que os dados não são normais.
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+Esses histogramas nada se parecem com o padrão de uma distribuição normal. Apenas com a visualização podemos afirmar que os dados violam o pressuposto de normalidade, ainda assim, podemos ainda testar a hipotese de os dados seguirem a distribuição normal pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipotese nula é que os dados são normais, ou seja, baixos valores de p indicam que os dados não são normais.
 
 ``` r
 shapiro.test(quebec)
@@ -251,4 +253,207 @@ Verificamos o resultado da ANOVA com a função `summary`. Novamente `Pr(>F)` in
 
 Esse teste mostrou apenas que existe diferença de comprimento de sépala entre pelo menos duas espécies, mas não sabemos quais.
 
-O teste a posteriori de Tukey, pode nos indicar quais espécies são diferentes de quais.
+O teste a posteriori de Tukey, pode nos indicar quais espécies são diferentes de quais. Usamos a função `tukeyHSD` que exige um objeto com o resultado da ANOVA.
+
+``` r
+TukeyHSD(res)
+```
+
+    ##   Tukey multiple comparisons of means
+    ##     95% family-wise confidence level
+    ## 
+    ## Fit: aov(formula = Sepal.Length ~ Species, data = iris)
+    ## 
+    ## $Species
+    ##                       diff       lwr       upr p adj
+    ## versicolor-setosa    0.930 0.6862273 1.1737727     0
+    ## virginica-setosa     1.582 1.3382273 1.8257727     0
+    ## virginica-versicolor 0.652 0.4082273 0.8957727     0
+
+O resultado deste teste mostra as comparações par a par, exibindo na coluna `diff` as diferenças entre as medias, `lwr` a diferença mais baixa, `upr` maior diferença e `p adj` o valor de p.
+
+Neste caso, o teste de Tukey revelou que todas as espécies diferem entre si em comprimento de sépala.
+
+Vamos criar um boxplot para visualizar graficamente as diferenças em tamanho de sépala entre as espécies
+
+``` r
+boxplot(Sepal.Length ~ Species, data = iris, main = "Tamanho de Sépala para espécies do gênero Iris")
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-14-1.png)
+
+Teste de Kruskal-Wallis
+-----------------------
+
+Através do Teste de Kruskal-Wallis testamos se há diferenças de uma variável entre 3 ou mais grupos sem que os dados necessitem seguir uma distribuição normal.
+
+``` r
+kruskal.test(Sepal.Length ~ Species, data = iris)
+```
+
+    ## 
+    ##  Kruskal-Wallis rank sum test
+    ## 
+    ## data:  Sepal.Length by Species
+    ## Kruskal-Wallis chi-squared = 96.937, df = 2, p-value < 2.2e-16
+
+Correlação linear
+-----------------
+
+Testes de correlação verificam se duas variáveis contínuas estão correlacionadas. A função `cor.test` realiza esse teste no R. O pressuposto aqui é que correlação é linear, se existir uma correlação porém não-linear esse teste não é capaz de identificar.
+
+Como exemplo vamos utilizar os dados de `airquality` para testar se temperatura e concetração de ozônio estão correlacionadas linearmente.
+
+``` r
+data("airquality")
+
+oz <- airquality$Ozone
+temp <- airquality$Temp
+
+cor.test(temp, oz)
+```
+
+    ## 
+    ##  Pearson's product-moment correlation
+    ## 
+    ## data:  temp and oz
+    ## t = 10.418, df = 114, p-value < 2.2e-16
+    ## alternative hypothesis: true correlation is not equal to 0
+    ## 95 percent confidence interval:
+    ##  0.5913340 0.7812111
+    ## sample estimates:
+    ##       cor 
+    ## 0.6983603
+
+O resultado indica um valor de p muito proximo a zero, confirma que há correlação entre as variáveis. O indice de correlação (r) é dado por `cor` (r = 0,7).
+
+Se criarmos um objeto com o resultado do teste podemos os resultado podem ser acessados como abaixo:
+
+``` r
+res <- cor.test(temp, oz)
+# valor de p
+res$p.value
+```
+
+    ## [1] 2.931897e-18
+
+``` r
+# coeficiente de correlação (r)
+res$estimate
+```
+
+    ##       cor 
+    ## 0.6983603
+
+Vamos observar essa correlação num gráfico:
+
+``` r
+plot(temp, oz)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-18-1.png)
+
+Regressão Linear
+----------------
+
+A regressão linear também pressupõe que os dados tenham distribuição normal, homogeneidade das variância e que a relação entre as variáveis é linear.
+
+A regressão permite gerar um modelo que prediz o valor da variável resposta em relação a um dado valor da variável de efeito. Os parametros dados pela regressão linear são intercepto e inclinação. A acurácia do modelo é medida com o R², quanto maior o valor, mais acurado é o modelo.
+
+Vamos conduzir uma regressão linear entre temperatura (variável efeito) e ozônio (variável resposta) para os dados de `airquality`. No R a função `lm` faz a regresão linear.
+
+``` r
+mod <- lm(Ozone ~ Temp, data = airquality)
+summary(mod)
+```
+
+    ## 
+    ## Call:
+    ## lm(formula = Ozone ~ Temp, data = airquality)
+    ## 
+    ## Residuals:
+    ##     Min      1Q  Median      3Q     Max 
+    ## -40.729 -17.409  -0.587  11.306 118.271 
+    ## 
+    ## Coefficients:
+    ##              Estimate Std. Error t value Pr(>|t|)    
+    ## (Intercept) -146.9955    18.2872  -8.038 9.37e-13 ***
+    ## Temp           2.4287     0.2331  10.418  < 2e-16 ***
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## 
+    ## Residual standard error: 23.71 on 114 degrees of freedom
+    ##   (37 observations deleted due to missingness)
+    ## Multiple R-squared:  0.4877, Adjusted R-squared:  0.4832 
+    ## F-statistic: 108.5 on 1 and 114 DF,  p-value: < 2.2e-16
+
+Podemos plotar a linha de regressão sobre um gráfico utilizando o objeto com o resultado da regressão na função `abline`
+
+``` r
+plot(Ozone ~ Temp, data = airquality)
+abline(mod)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-20-1.png)
+
+Vamos verificar se os dados atendem ao pressuposto de normalidade com visualizando histogramas
+
+``` r
+par(mfrow = c(1,2))
+
+hist(airquality$Ozone)
+hist(airquality$Temp)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-21-1.png)
+
+Nenhuma das variáveis apresenta distribuição normal. Vamos confirmar com o teste de Shapiro-Wilk
+
+``` r
+shapiro.test(airquality$Ozone)
+```
+
+    ## 
+    ##  Shapiro-Wilk normality test
+    ## 
+    ## data:  airquality$Ozone
+    ## W = 0.87867, p-value = 2.79e-08
+
+``` r
+shapiro.test(airquality$Temp)
+```
+
+    ## 
+    ##  Shapiro-Wilk normality test
+    ## 
+    ## data:  airquality$Temp
+    ## W = 0.97617, p-value = 0.009319
+
+Podemos utilizar o objeto `mod` para verificar graficamente se os pressupostos da regressão são atendidos.
+
+Para comparação vamos gerar dois dados com distribuição normal e variancia homogêneas.
+
+``` r
+set.seed(5)
+a <- rnorm(100, 2, 2)
+b <- rnorm(100, 5, 2)
+
+mod1 <- lm(b ~ a)
+
+par(mfrow = c(2,2))
+
+plot(mod1)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-23-1.png)
+
+``` r
+par(mfrow = c(2,2))
+plot(mod)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-24-1.png)
+
+Nosso foco aqui é nos dois primeiros gráficos, `Residuals vs. Fitted` e `Normal Q-Q`. Em `Residuals vs. Fitted` observamos se os resídous tem variâncias homogêneas e em `Normal Q-Q` se os dados são normais.
+
+Esse tipo de aferição é visual e um pouco subjetiva e com base no exemplo com dados normais, a regressão de Ozonio em relação a Temperatura não não é confiável pois viola os pressupostos de normalidade e heterogeneidade das variâncias dos resíduos.
