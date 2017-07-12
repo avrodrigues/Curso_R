@@ -1,9 +1,30 @@
 Estatística básica
 ================
 
-A ideia desta seção é apresentar as funções do R que realizam as análises estatísticas básicas e testam pressupostos. E também como utilizar os resultados dentro do R para gerar gráficos com legendas.
+Teste de Hipótese
+=================
 
-Neste sentido, demostrarei com fazer Teste-T, Anova, Teste de Tukey, Teste de Correlação e Regressão Linear.
+Em estudos de ecologia frequentemente desejamos fazer comparações entre diferentes grupos ou populações ou ainda verificar como as variáveis ambientais se relacionam com os organismos. Fazemos observações, coletamos dados, verificamos padrões e testamos se nossas idéias correspondem as nossas hipóteses.
+
+Esses testes são baseados em uma lógica que assume que os eventos do mundo real são aleatórios. Se nossas observações são diferentes do esperado (ser aleatório) consideramos isso uma evidência de que o mundo não é aleatório e, especificamente para o que estamos testando, podemos afirmar que existe uma relação, ou efeito, ou diferença.
+
+Em estatística, H0 representa a hipótese de que o mundo é aleatorio e H1 a hipótese de que há relação, ou efeito, ou diferença, entre os fatores que foram observados.
+
+Tudo é testado em termos de probabilidade, e o valor de p mede quais são as nossas chances de errar quando afirmamos que H1 é verdadeiro. Então, um valor de p de 0,05, significa que temos 5% de chance de errar com essa afirmativa.
+
+Existem testes diferentes de acordo com o tipo de pergunta que você deseja responder. Se você está interessado nas diferenças entre grupos em relação a uma variável você deverá utilizar um teste para dados categóricos, como teste T e ANOVA. Se o seu interesse é na relação entre duas variáveis, você deve utilizar testes para dados contínuos, como correlação e regressão. Veja a figura:
+
+**(adicionar figura)**
+
+Além disso, esses testes ainda podem ser divididos entre os paramétricos e os não-paramétricos.
+
+Testes paramétricos assumem uma disposição dos dados, e os testes realizados precisam atender a algumas condições para que voce possa confiar no valor de p. Geralmente, nos testes paramétricos é exigido que os dados tenham distribuição normal e que a variância seja homogênea (conhecida também com homogeneidade ou homocedasticidade).
+
+Nos testes não-paramétricos não precisamos atentender aos pressupostos de normalidade e homogeneidade, porém nesses testes há uma maior dificuldade chegarmos a valores de p baixos para amostragens pequenas, e acabam sendo menos confiaveis para esse tipo de dado.
+
+No entanto, dados ecológicos dificilmente atendem a todos os pressupostos exigidos pelos testes paramétricos, e em alguns casos violar alguma dessas condições, como a normalidade dos dados pode não ser tão grave assim se voce tiver um n-amostral alto. Há muitos bons livros disponíveis que tratam tando de estatística, como de estatística voltada as questões ecológicas, nestes livros você pode encontrar detalhes de como escolher o melhor método para a sua questão e o que implica escolher um ou outro método.
+
+Aqui pretendo mostrar algumas funções do R que realizam testes de hipótese e algumas ferramentas utilizadas para verificar os pressupostos dos testes paramétricos.
 
 Teste T
 -------
@@ -17,11 +38,14 @@ Para exemplificar, vamos utilizar os dados de captura de CO2 da por *Echinochloa
 data("CO2")
 ```
 
-Antes de aplicar o teste T, devemos saber se há homegeneidade das variâncias. Para isso, aplicamos a função `leveneTest` do pacote `car`. É necessário informar apenas
+Antes de aplicar o teste T, devemos saber se há homegeneidade das variâncias. Para isso, aplicamos a função `leveneTest` do pacote `car`. É necessário informar uma argumento do tipo formula escrita como `(variável ~ grupos)`.
 
 ``` r
 library(car)
-leveneTest(CO2$uptake ~ CO2$Type)
+## Os dois códigos retoram o mesmo valor
+
+#leveneTest(CO2$uptake ~ CO2$Type)
+leveneTest(uptake ~ Type, data = CO2)
 ```
 
     ## Levene's Test for Homogeneity of Variance (center = median)
@@ -52,36 +76,54 @@ t
 
 O teste nos mostrou que temos diferenças na captura de CO2 entre os locais. Vamos visualizar os dados com um boxplot. E adicionamos uma legenda para informar os resultados do teste T.
 
+Quando criamos um objeto com o resultado de um teste estatítico podemos ter acesso as informações sobre os resultados. Esses resultados são guardados em forma de lista em um objeto, e podemos acessar valor de p e intevalo de confianaça, por exemplo, através desse objeto.
+
+``` r
+# Valor de p
+t$p.value
+```
+
+    ## [1] 3.834686e-09
+
 ``` r
 boxplot(CO2$uptake ~ CO2$Type)
+legend("topright", paste("p = ",round(t$p.value,9)))
 ```
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-Outro pressuposto é que os dados devem ter distribuição normal. Para analisar se os nossos dados têm distribuição normal podemos usar uma feramenta gráfica chamada `qqnorm`. Neste gráfico se os dados são de uma distribuição normal, os pontos ficarão alinhados sobre a linha dos 45º. abaixo temos dois exemplos com amostras de dados normais e não-normais
+Outro pressuposto é que os dados devem ter distribuição normal. Podemos verificar gráficamente se os dados atendem a esse pressuposto com um histograma, para efeito de comparação osbserve os histogramas de com dados distribuição normal e não-normal.
 
 ``` r
-# Distrribuição normal
-data<-rnorm(30, 2,2) 
-qqnorm(data) 
-qqline(data)
+set.seed(152)
+normal <- rnorm(30, 2,2) 
+nao.normal <- runif(30, -4, 4)
+
+op <- par()
+
+par(mfrow = c(1,2))
+
+hist(normal)
+hist(nao.normal)
 ```
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-``` r
-#Distribuição não-normal
-data<-runif(30, -4,4) 
-qqnorm(data) 
-qqline(data)
-```
-
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-5-2.png) Podemos ainda testar a hypotese de os dados serem normais pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipotese nula seja confirmada, ou seja, o valor de p deve ser superior a 0,05.
+Devemos verificar a normalidade dos dados de cada grupo comparadado.
 
 ``` r
 quebec <- CO2$uptake[CO2$Type == "Quebec"]
 mississippi <- CO2$uptake[CO2$Type == "Mississippi"]
 
+par(mfrow = c(1,2))
+
+hist(quebec)
+hist(mississippi)
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-6-1.png) Esses histogramas nada se parecem com o padrão de uma distribuição normal. Apenas com a visualização podemos afirmar que os dados violam o pressuposto de normalidade, ainda assim, podemos ainda testar a hipotese de os dados seguirem a distribuição normal pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipotese nula é que os dados são normais, ou seja, baixos valores de p indicam que os dados não são normais.
+
+``` r
 shapiro.test(quebec)
 ```
 
@@ -101,7 +143,7 @@ shapiro.test(mississippi)
     ## data:  mississippi
     ## W = 0.93633, p-value = 0.0213
 
-Nossos dados não seguem uma distribuição normal, e portanto não podemos confiar no resultado do teste-t, pois o pressuposto de normalidade dos dados não foi atendido.
+Como visto nos hitogramas os teste confirma que nossos dados não seguem uma distribuição normal, e portanto não podemos confiar no resultado do teste-t, pois o pressuposto de normalidade dos dados não foi atendido.
 
 Teste Wilcoxon-Mann-Whitney
 ---------------------------
@@ -126,11 +168,87 @@ wilcox.test(uptake ~ Type, data = CO2)
 
 O teste confirma que há diferenças entre na captura de CO2 entre as populações de Quebec e Mississippi.
 
+Neste caso, apesar dos dados violarem o pressuposto de normalidade o resultado do teste T foi confirmado pelo teste não-paramétrico.
+
 ANOVA
 -----
 
 Enquanto o teste T verifica se há diferença da média de um parâmetro entre dois grupos, com a ANOVA podemos testar se há diferenças entre três ou mais grupos.
 
-Para utilizar o teste ANOVA os dados devem ser de disribuição normal, com variancias homogêneas e as variáveis devem ser independentes.
+A ANOVA pressupõe que os dados têm distribuição normal, possuem variâncias homogeneas e que as amostras são independentes.
 
-Como exemplo
+Como exemplo, vamos usar os dados de `iris` e testar se há diferenças de comprimento de sépalas entre as espécies.
+
+``` r
+data("iris")
+
+str(iris)
+```
+
+    ## 'data.frame':    150 obs. of  5 variables:
+    ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+    ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+    ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+    ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+    ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+
+``` r
+levels(iris$Species) # as espécies de iris
+```
+
+    ## [1] "setosa"     "versicolor" "virginica"
+
+Antes verificamos se os dados da variável sépala seguem distribuição normal
+
+``` r
+# dados de comprimento de sepala para cada espécie
+
+i.set <- iris[iris$Species == "setosa", "Sepal.Length"]
+i.vers <- iris[iris$Species == "versicolor", "Sepal.Length"]
+i.virg <- iris[iris$Species == "virginica", "Sepal.Length"]
+
+# Histogramas
+par(mfrow = c(2,2))
+
+hist(i.set, main = "setosa")
+hist(i.vers, main = "versicolor")
+hist(i.virg, main = "virginica")
+```
+
+![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-10-1.png)
+
+Fica claro que os dados atendem ao pressuposto de normalidade.
+
+Vamos testar se eles possuem variâncias homogêneas com `leveneTest`
+
+``` r
+leveneTest(Sepal.Length ~ Species, data = iris)
+```
+
+    ## Levene's Test for Homogeneity of Variance (center = median)
+    ##        Df F value   Pr(>F)   
+    ## group   2  6.3527 0.002259 **
+    ##       147                    
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+O teste indicou que as variâncias são heterogêneas e violam o pressuposto de homogeneidade.
+
+Ainda assim, vamos conduzir o teste da ANOVA:
+
+``` r
+res <- aov(Sepal.Length ~ Species, data = iris)
+summary(res)
+```
+
+    ##              Df Sum Sq Mean Sq F value Pr(>F)    
+    ## Species       2  63.21  31.606   119.3 <2e-16 ***
+    ## Residuals   147  38.96   0.265                   
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Verificamos o resultado da ANOVA com a função `summary`. Novamente `Pr(>F)` indica o valor de p, neste caso um valor muito próximo a zero. A hipotese nula é rejeitada, porém, sabemos que violamos a condição de homogeneidade dos dados.
+
+Esse teste mostrou apenas que existe diferença de comprimento de sépala entre pelo menos duas espécies, mas não sabemos quais.
+
+O teste a posteriori de Tukey, pode nos indicar quais espécies são diferentes de quais.
