@@ -13,7 +13,11 @@ Existem muitos métodos para realizar esse tipo de analise que podem ser agrupad
 
 A análise então seguirá alguns passos:
 
-1 - Criar uma matrix de distãncias 2 - Realizar o agrupamento por diferentes métodos 3 - Escolher o melhor método de agrupamento 4 - Definir a linha de corte do dendrograma 5 - Gerar um gráfico (dendrograma) que mostre os grupos identificados pela análise
+1 - Criar uma matrix de distãncias
+2 - Realizar o agrupamento por diferentes métodos
+3 - Escolher o método de agrupamento mais informativo
+4 - Definir a linha de corte do dendrograma
+5 - Gerar um gráfico (dendrograma) que mostre os grupos identificados pela análise
 
 Pacotes necessários
 -------------------
@@ -80,4 +84,101 @@ plot(spe.euc.WPGMC, hang = -1, cex = 0.9)
 plot(spe.euc.ward, hang = -1, cex = 0.9)
 ```
 
-![](Análise_de_Agrupamento_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](Análise_de_Agrupamento_files/figure-markdown_github/unnamed-chunk-3-1.png) \#\# Passo 3 - Escolher o método de agrupamento mais informativo
+
+Não há um método que seja melhor que outro, eles criam os agrupamentos de maneira diferente, e dessa maneira acabam perdendo informação em relação a real distância entre os sítios (contídos na matrix de distancias euclidianas).
+
+Para contornar esse problema, podemos escolher um método de agrupamento com base no npivel de informação que é mantida no dendograma em relação à matriz de distâncias. Isso é feito por meio de correlação cofenética, onde o valor indica a percentagem de informação mantida no dendrograma em relação à matriz de distâncias. Escolhemos o método que apresentar o maior indice de correlação cofenética para seguir com a análise.
+
+``` r
+# Single linkage clustering
+spe.euc.single.coph <- cophenetic(spe.euc.single)
+cor(spe.euc, spe.euc.single.coph)
+```
+
+    ## [1] 0.5748702
+
+``` r
+# Complete linkage clustering
+spe.euc.comp.coph <- cophenetic(spe.euc.complete)
+cor(spe.euc, spe.euc.comp.coph)
+```
+
+    ## [1] 0.7095772
+
+``` r
+# Average clustering
+spe.euc.UPGMA.coph <- cophenetic(spe.euc.UPGMA)
+cor(spe.euc, spe.euc.UPGMA.coph)
+```
+
+    ## [1] 0.7241221
+
+``` r
+# WPGMA clustering
+spe.euc.WPGMA.coph <- cophenetic(spe.euc.WPGMA)
+cor(spe.euc, spe.euc.WPGMA.coph)
+```
+
+    ## [1] 0.7278302
+
+``` r
+# WPGMC clustering
+spe.euc.WPGMC.coph <- cophenetic(spe.euc.WPGMC)
+cor(spe.euc, spe.euc.WPGMC.coph)
+```
+
+    ## [1] 0.06025703
+
+``` r
+# Ward clustering
+spe.euc.ward.coph <- cophenetic(spe.euc.ward)
+cor(spe.euc, spe.euc.ward.coph)
+```
+
+    ## [1] 0.6906612
+
+O método WPGMA obteve o maior valor de correlação cofenética e prosseguiremos a analise de agrupamento utilizando este método.
+
+``` r
+plot(spe.euc.WPGMA, hang = -1)
+```
+
+![](Análise_de_Agrupamento_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+Passo 4 - Definir a linha de corte do dendrograma
+-------------------------------------------------
+
+Olhando o gráfico acima, quantos grupos foram formados?
+
+Essa é geralmente uma decisão arbritrária, entretando há uma opção matemática para auxiliar nessa decisão: medir a Largura Média da Silhueta.
+
+A largura da silhueta indica o nível de pertencimento de um objeto (sítio no nosso caso) a um grupo preestabelecido. Neste sentido, quanto maior for o valor melhor é o pertencimento de um objeto ao seu grupo, ou seja o agrupamento esta bem estabelecido. Assim, se a média da largura da silhueta for alta melhor é o agrupamento.
+
+O código abaixo roda essa análise e nos retorna um gráfico que indica quantos grupos nossa linha de corte do dendrograma deve produzir
+
+``` r
+asw <- numeric(nrow(spe))
+for (k in 2:(nrow(spe)-1)) {
+  sil <- silhouette(cutree(spe.euc.WPGMA, k=k), spe.euc)
+  asw[k] <- summary(sil)$avg.width
+}
+k.best <- which.max(asw)
+windows(title="Silhouettes - UPGMA - k = 2 to n-1")
+plot(1:nrow(spe), asw, type="h", 
+     main="Silhouette-optimal number of clusters, UPGMA", 
+     xlab="k (number of groups)", ylab="Average silhouette width")
+axis(1, k.best, paste("optimum",k.best,sep="\n"), col="red", font=2,
+     col.axis="red")
+points(k.best, max(asw), pch=16, col="red", cex=1.5)
+```
+
+![](Análise_de_Agrupamento_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+``` r
+cat("", "Silhouette-optimal number of clusters k =", k.best, "\n", 
+    "with an average silhouette width of", max(asw), "\n")
+```
+
+    ##  Silhouette-optimal number of clusters k = 4 
+    ##  with an average silhouette width of 0.2063101
