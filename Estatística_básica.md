@@ -13,8 +13,7 @@ Em estatística, H0 (hipótese nula) representa a hipótese de que o mundo é al
 Tudo é testado em termos de probabilidade, e o valor de p mede quais são as nossas chances de errar quando afirmamos que H1 é verdadeira. Então, um valor de p de 0,05, significa que temos 5% de chance de errar com essa afirmativa, um avalor aceitavel dentro do meio biótico.
 
 Existem testes diferentes de acordo com o tipo de pergunta que você deseja responder. Se você está interessado nas diferenças entre grupos em relação a uma variável você deverá utilizar um teste para dados categóricos, como teste T e ANOVA. Se o seu interesse é na relação entre duas variáveis, você deve utilizar testes para dados contínuos, como correlação e regressão. Veja a figura:
-
-**(adicionar figura)**
+![](Estatística_básica_files/figure-markdown_github/Figura-Teste_de_Hipoteses.jpg)
 
 Além disso, esses testes ainda podem ser divididos entre os paramétricos e os não-paramétricos.
 
