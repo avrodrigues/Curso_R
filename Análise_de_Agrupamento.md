@@ -164,7 +164,7 @@ for (k in 2:(nrow(spe)-1)) {
   asw[k] <- summary(sil)$avg.width
 }
 k.best <- which.max(asw)
-windows(title="Silhouettes - UPGMA - k = 2 to n-1")
+windows(title="Silhouettes - WPGMA - k = 2 to n-1")
 plot(1:nrow(spe), asw, type="h", 
      main="Silhouette-optimal number of clusters, UPGMA", 
      xlab="k (number of groups)", ylab="Average silhouette width")
@@ -182,3 +182,22 @@ cat("", "Silhouette-optimal number of clusters k =", k.best, "\n",
 
     ##  Silhouette-optimal number of clusters k = 4 
     ##  with an average silhouette width of 0.2063101
+
+A analise indicou a presença de quatro grupos, resta produzir o dendrograma com esses grupos
+
+Passo 5 - Gerar um gráfico (dendrograma) que mostre os grupos identificados pela análise
+----------------------------------------------------------------------------------------
+
+Para gerar esse gráfico vamos utilizar uma função criada `hcoplot`por Legendre & Legendre 2008 **\[BAIXE AQUI\]**. Baixe o script da função para a pasta de trabalho do R. Quando uma função está dentro de um scrit podemos usar `source`para carregar a função sem abrir o script. Você também pode abrir o script e rodar tudo que funciona do mesmo jeito.
+
+Nesta função exige os o objeto do tipo `hclust`
+
+``` r
+source("hcoplot.R")
+
+hcoplot(spe.euc.WPGMA, spe.euc, k = 4)
+```
+
+    ## Loading required package: gclus
+
+![](Análise_de_Agrupamento_files/figure-markdown_github/unnamed-chunk-7-1.png)
