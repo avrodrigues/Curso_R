@@ -4,13 +4,13 @@ Estatística básica
 Teste de Hipótese
 =================
 
-Em estudos de ecologia frequentemente desejamos fazer comparações entre diferentes grupos ou populações ou ainda verificar como as variáveis ambientais se relacionam com os organismos. Fazemos observações, coletamos dados, verificamos padrões e testamos se nossas idéias correspondem as nossas hipóteses.
+Em estudos de ecologia frequentemente desejamos fazer comparações entre diferentes grupos ou populações ou ainda verificar como as variáveis ambientais se relacionam com os organismos. Fazemos observações, coletamos dados, verificamos padrões e testamos se nossas ideias correspondem as nossas hipóteses.
 
-Esses testes são baseados em uma lógica que assume que os eventos do mundo real são aleatórios. Se nossas observações são diferentes do esperado (ser aleatório) consideramos isso uma evidência de que o mundo não é aleatório e, especificamente para o que estamos testando, podemos afirmar que existe uma relação, ou efeito, ou diferença.
+Esses testes são baseados em uma lógica que assume que os eventos do mundo real são aleatórios. Se nossas observações são diferentes do esperado (ser aleatório) consideramos isso uma evidência de que os eventos analisados não são aleatórios e, especificamente para o que estamos testando, podemos afirmar que existe uma relação, ou efeito, ou diferença.
 
-Em estatística, H0 representa a hipótese de que o mundo é aleatorio e H1 a hipótese de que há relação, ou efeito, ou diferença, entre os fatores que foram observados.
+Em estatística, H0 (hipótese nula) representa a hipótese de que o mundo é aleatório e H1 a hipótese de que há relação, ou efeito, ou diferença, entre os fatores que foram observados.
 
-Tudo é testado em termos de probabilidade, e o valor de p mede quais são as nossas chances de errar quando afirmamos que H1 é verdadeiro. Então, um valor de p de 0,05, significa que temos 5% de chance de errar com essa afirmativa.
+Tudo é testado em termos de probabilidade, e o valor de p mede quais são as nossas chances de errar quando afirmamos que H1 é verdadeira. Então, um valor de p de 0,05, significa que temos 5% de chance de errar com essa afirmativa, um avalor aceitavel dentro do meio biótico.
 
 Existem testes diferentes de acordo com o tipo de pergunta que você deseja responder. Se você está interessado nas diferenças entre grupos em relação a uma variável você deverá utilizar um teste para dados categóricos, como teste T e ANOVA. Se o seu interesse é na relação entre duas variáveis, você deve utilizar testes para dados contínuos, como correlação e regressão. Veja a figura:
 
@@ -18,11 +18,11 @@ Existem testes diferentes de acordo com o tipo de pergunta que você deseja resp
 
 Além disso, esses testes ainda podem ser divididos entre os paramétricos e os não-paramétricos.
 
-Testes paramétricos assumem uma disposição dos dados, e os testes realizados precisam atender a algumas condições para que voce possa confiar no valor de p. Geralmente, nos testes paramétricos é exigido que os dados tenham distribuição normal e que a variância seja homogênea (conhecida também com homogeneidade ou homocedasticidade).
+Testes paramétricos assumem uma disposição dos dados, e os testes realizados precisam atender a algumas condições para que você possa confiar no valor de p. Geralmente, nos testes paramétricos é exigido que os dados tenham distribuição normal e que a variância seja homogênea (conhecida também com homogeneidade ou homocedasticidade).
 
-Nos testes não-paramétricos não precisamos atentender aos pressupostos de normalidade e homogeneidade, porém nesses testes há uma maior dificuldade chegarmos a valores de p baixos para amostragens pequenas, e acabam sendo menos confiaveis para esse tipo de dado.
+Nos testes não-paramétricos não precisamos atender aos pressupostos de normalidade e homogeneidade, porém nesses testes há uma maior dificuldade chegarmos a valores de p baixos para amostragens pequenas, acabando sendo menos confiáveis para esse tipo de dado.
 
-No entanto, dados ecológicos dificilmente atendem a todos os pressupostos exigidos pelos testes paramétricos, e em alguns casos violar alguma dessas condições, como a normalidade dos dados pode não ser tão grave assim se voce tiver um n-amostral alto. Há muitos bons livros disponíveis que tratam tando de estatística, como de estatística voltada as questões ecológicas, nestes livros você pode encontrar detalhes de como escolher o melhor método para a sua questão e o que implica escolher um ou outro método.
+No entanto, dados ecológicos dificilmente atendem a todos os pressupostos exigidos pelos testes paramétricos, e em alguns casos violar alguma dessas condições, como a normalidade dos dados pode não ser tão grave assim se você tiver um n-amostral alto. Há muitos bons livros disponíveis que tratam tanto de estatística, como de estatística voltada as questões ecológicas. Nestes livros você pode encontrar detalhes de como escolher o melhor método para a sua questão e o que implica escolher um ou outro método.
 
 Aqui pretendo mostrar algumas funções do R que realizam testes de hipótese e algumas ferramentas utilizadas para verificar os pressupostos dos testes paramétricos.
 
@@ -53,9 +53,9 @@ leveneTest(uptake ~ Type, data = CO2)
     ## group  1  0.1704 0.6808
     ##       82
 
-No resultado acima `Pr(>F)` refere-se ao valor de p. Caso for significativo, abaixo de 0,05, consideramos que NÂO há homogeneidade das variâncias.
+No resultado acima `Pr(>F)` refere-se ao valor de p. Caso for significativo, abaixo de 0,05, consideramos que NÃO há homogeneidade das variâncias.
 
-Como nossos dados poussem variâncias homogêneas, devemos incluir o argumento `var.equal = TRUE` na função `t.test`. Caso contrário, não há necessidade de informar o argumento `var.equal`
+Como nossos dados possem variâncias homogêneas, devemos incluir o argumento `var.equal = TRUE` na função `t.test`. Caso contrário, não há necessidade de informar o argumento `var.equal`
 
 ``` r
 t <- t.test(CO2$uptake ~ CO2$Type, var.equal = TRUE)
@@ -76,7 +76,7 @@ t
 
 O teste nos mostrou que temos diferenças na captura de CO2 entre os locais. Vamos visualizar os dados com um boxplot. E adicionamos uma legenda para informar os resultados do teste T.
 
-Quando criamos um objeto com o resultado de um teste estatítico podemos ter acesso as informações sobre os resultados. Esses resultados são guardados em forma de lista em um objeto, e podemos acessar valor de p e intevalo de confianaça, por exemplo, através desse objeto.
+Quando criamos um objeto com o resultado de um teste estatístico podemos ter acesso as informações sobre os resultados. Esses resultados são guardados em forma de lista em um objeto, e podemos acessar valor de p e intervalo de confiança, por exemplo, através desse objeto.
 
 ``` r
 # Valor de p
@@ -92,7 +92,7 @@ legend("topright", paste("p = ",round(t$p.value,9)))
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
-Outro pressuposto é que os dados devem ter distribuição normal. Podemos verificar gráficamente se os dados atendem a esse pressuposto com um histograma, para efeito de comparação osbserve os histogramas de com dados distribuição normal e não-normal.
+Outro pressuposto é que os dados devem ter distribuição normal. Podemos verificar graficamente se os dados atendem a esse pressuposto com um histograma, para efeito de comparação osbserve os histogramas com dados distribuição normal e não-normal.
 
 ``` r
 set.seed(152)
@@ -109,7 +109,7 @@ hist(nao.normal)
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-Devemos verificar a normalidade dos dados de cada grupo comparadado.
+Devemos verificar a normalidade dos dados de cada grupo comparado.
 
 ``` r
 quebec <- CO2$uptake[CO2$Type == "Quebec"]
@@ -123,7 +123,7 @@ hist(mississippi)
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-Esses histogramas nada se parecem com o padrão de uma distribuição normal. Apenas com a visualização podemos afirmar que os dados violam o pressuposto de normalidade, ainda assim, podemos ainda testar a hipotese de os dados seguirem a distribuição normal pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipotese nula é que os dados são normais, ou seja, baixos valores de p indicam que os dados não são normais.
+Esses histogramas nada se parecem com o padrão de uma distribuição normal. Apenas com a visualização podemos afirmar que os dados violam o pressuposto de normalidade, ainda assim, podemos ainda testar a hipótese de os dados seguirem a distribuição normal pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipótese nula é que os dados são normais, ou seja, baixos valores de p indicam que os dados não são normais.
 
 ``` r
 shapiro.test(quebec)
@@ -145,7 +145,7 @@ shapiro.test(mississippi)
     ## data:  mississippi
     ## W = 0.93633, p-value = 0.0213
 
-Como visto nos hitogramas os teste confirma que nossos dados não seguem uma distribuição normal, e portanto não podemos confiar no resultado do teste-t, pois o pressuposto de normalidade dos dados não foi atendido.
+Como visto nos histogramas, os testes confirmam que nossos dados não seguem uma distribuição normal, e portanto não podemos confiar no resultado do teste-t, pois o pressuposto de normalidade dos dados não foi atendido.
 
 Teste Wilcoxon-Mann-Whitney
 ---------------------------
@@ -177,7 +177,7 @@ ANOVA
 
 Enquanto o teste T verifica se há diferença da média de um parâmetro entre dois grupos, com a ANOVA podemos testar se há diferenças entre três ou mais grupos.
 
-A ANOVA pressupõe que os dados têm distribuição normal, possuem variâncias homogeneas e que as amostras são independentes.
+A ANOVA pressupõe que os dados têm distribuição normal, possuem variâncias homogêneas e que as amostras são independentes.
 
 Como exemplo, vamos usar os dados de `iris` e testar se há diferenças de comprimento de sépalas entre as espécies.
 
@@ -249,11 +249,11 @@ summary(res)
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Verificamos o resultado da ANOVA com a função `summary`. Novamente `Pr(>F)` indica o valor de p, neste caso um valor muito próximo a zero. A hipotese nula é rejeitada, porém, sabemos que violamos a condição de homogeneidade dos dados.
+Verificamos o resultado da ANOVA com a função `summary`. Novamente `Pr(>F)` indica o valor de p, neste caso um valor muito próximo a zero. A hipótese nula é rejeitada, porém, sabemos que violamos a condição de homogeneidade dos dados.
 
 Esse teste mostrou apenas que existe diferença de comprimento de sépala entre pelo menos duas espécies, mas não sabemos quais.
 
-O teste a posteriori de Tukey, pode nos indicar quais espécies são diferentes de quais. Usamos a função `tukeyHSD` que exige um objeto com o resultado da ANOVA.
+O teste a posteriori de Tukey pode nos indicar quais espécies são diferentes de quais. Usamos a função `tukeyHSD` que exige um objeto com o resultado da ANOVA.
 
 ``` r
 TukeyHSD(res)
@@ -302,7 +302,7 @@ Correlação linear
 
 Testes de correlação verificam se duas variáveis contínuas estão correlacionadas. A função `cor.test` realiza esse teste no R. O pressuposto aqui é que correlação é linear, se existir uma correlação porém não-linear esse teste não é capaz de identificar.
 
-Como exemplo vamos utilizar os dados de `airquality` para testar se temperatura e concetração de ozônio estão correlacionadas linearmente.
+Como exemplo vamos utilizar os dados de `airquality` para testar se temperatura e concentração de ozônio estão correlacionadas linearmente.
 
 ``` r
 data("airquality")
@@ -325,7 +325,7 @@ cor.test(temp, oz)
     ##       cor 
     ## 0.6983603
 
-O resultado indica um valor de p muito proximo a zero, confirma que há correlação entre as variáveis. O indice de correlação (r) é dado por `cor` (r = 0,7).
+O resultado indica um valor de p muito próximo a zero, confirma que há correlação entre as variáveis. O índice de correlação (r) é dado por `cor` (r = 0,7).
 
 Se criarmos um objeto com o resultado do teste podemos os resultado podem ser acessados como abaixo:
 
@@ -356,11 +356,11 @@ plot(temp, oz)
 Regressão Linear
 ----------------
 
-A regressão linear também pressupõe que os dados tenham distribuição normal, homogeneidade das variância e que a relação entre as variáveis é linear.
+A regressão linear pressupõe que os dados tenham distribuição normal, homogeneidade das variância dos resíduos e que a relação entre as variáveis é linear.
 
-A regressão permite gerar um modelo que prediz o valor da variável resposta em relação a um dado valor da variável de efeito. Os parametros dados pela regressão linear são intercepto e inclinação. A acurácia do modelo é medida com o R², quanto maior o valor, mais acurado é o modelo.
+A regressão permite gerar um modelo que prediz o valor da variável resposta em relação a um dado valor da variável de efeito. Os parâmetros dados pela regressão linear são intercepto e inclinação. A acurácia do modelo é medida com o R², quanto maior o valor, mais acurado é o modelo.
 
-Vamos conduzir uma regressão linear entre temperatura (variável efeito) e ozônio (variável resposta) para os dados de `airquality`. No R a função `lm` faz a regresão linear.
+Vamos conduzir uma regressão linear entre temperatura (variável efeito) e ozônio (variável resposta) para os dados de `airquality`. No R a função `lm` faz a regressão linear.
 
 ``` r
 mod <- lm(Ozone ~ Temp, data = airquality)
@@ -431,7 +431,7 @@ shapiro.test(airquality$Temp)
 
 Podemos utilizar o objeto `mod` para verificar graficamente se os pressupostos da regressão são atendidos.
 
-Para comparação vamos gerar dois dados com distribuição normal e variancia homogêneas.
+Para comparação vamos gerar dois dados com distribuição normal e variância homogêneas.
 
 ``` r
 set.seed(5)
@@ -454,6 +454,6 @@ plot(mod)
 
 ![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-24-1.png)
 
-Nosso foco aqui é nos dois primeiros gráficos, `Residuals vs. Fitted` e `Normal Q-Q`. Em `Residuals vs. Fitted` observamos se os resídous tem variâncias homogêneas e em `Normal Q-Q` se os dados são normais.
+Nosso foco aqui é nos dois primeiros gráficos, `Residuals vs. Fitted` e `Normal Q-Q`. Em `Residuals vs. Fitted` observamos se os resíduos tem variâncias homogêneas e em `Normal Q-Q` se os dados são normais.
 
-Esse tipo de aferição é visual e um pouco subjetiva e com base no exemplo com dados normais, a regressão de Ozonio em relação a Temperatura não não é confiável pois viola os pressupostos de normalidade e heterogeneidade das variâncias dos resíduos.
+Esse tipo de aferição é visual e um pouco subjetiva e com base no exemplo com dados normais, a regressão de Ozônio em relação a Temperatura não é confiável pois viola os pressupostos de normalidade e heterogeneidade das variâncias dos resíduos.
