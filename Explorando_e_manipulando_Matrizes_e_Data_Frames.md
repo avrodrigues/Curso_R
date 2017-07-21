@@ -1,14 +1,14 @@
 Explorando e manipulando Matrizes e Data Frames
 ================
 
-Ao importar uma planilha de dados para o R é importante conferir com os dados estão estruturados e se o R importou certinho os dados.
+Ao importar uma planilha de dados para o R é importante conferir como os dados estão estruturados e se o R importou certinho os dados.
 
-Algums funções do R pode nos auxiliar a entender com os dados estão estruturados.
+Algumas funções do R podem nos auxiliar a entender como os dados estão estruturados.
 
-`dim` mostra a dimensão (quantas linhas e quantas colunas) dos dados  
-`class` indica a classe do objeto que contem o conjunto de dados. Também pode ser aplicado para apenas uma coluna  
-`length` mostra o comprimento de um objeto. Quando aplicado a um vetor quantos valores o vetor contem. Quando aplicado a um data frame mostra quantas colunas ele possui. Quando aplicado a um objeto do tipo matriz mostra quantos valores a matriz completa contem  
-`str` mostra a estrutura dos dados. Essa função agrupa outras funções acima indicando a dimensão, a classe do conjunto de dados completo e a classe de cada variável (coluna)  
+`dim` mostra a dimensão (quantas linhas e quantas colunas) dos dados
+`class` indica a classe do objeto que contém o conjunto de dados. Também pode ser aplicado para apenas uma coluna
+`length` mostra o comprimento de um objeto. Quando aplicado a um vetor, quantos valores o vetor contém. Quando aplicado a um data frame mostra quantas colunas ele possui. Quando aplicado a um objeto do tipo matriz mostra quantos valores a matriz completa contém
+`str` mostra a estrutura dos dados. Essa função agrupa outras funções acima indicando a dimensão, a classe do conjunto de dados completo e a classe de cada variável (coluna)
 
 Carregue os dados de `airquality` e explore as funções citadas acima:
 
@@ -56,7 +56,7 @@ str(airquality)
     ##  $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
     ##  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...
 
-Exploramos como os dados estão estruturados, agora vamos entender a distribuição desses dados. Para isso podemos usar funções que nos indiquem informações básicas sobre os dados em si. Podemos, por exemplo, buscar pela média de cada variável, seu valor minimo e máximo. Para isso, podemos utilizar as funções `mean`, `min` e `max` para cada variável.
+Exploramos como os dados estão estruturados, agora vamos entender a distribuição desses dados. Para isso podemos usar funções que nos indiquem informações básicas sobre os dados em si. Podemos, por exemplo, buscar pela média de cada variável, seu valor mínimo e máximo. Para isso, podemos utilizar as funções `mean`, `min` e `max` para cada variável.
 
 Por exemplo:
 
@@ -101,14 +101,14 @@ summary(airquality)
     ##  Max.   :9.000   Max.   :31.0  
     ## 
 
-Note que as variáveis `Month` e `Day` estão sendo tratadas como números inteiros, quando na verdade devem ser entendidas como fatores. Neste caso podemos alterar a classe da variável para fator utilizando a função `as.factor`.
+Note que as variáveis `Month` e `Day` estão sendo tratadas como números inteiros, quando na verdade devem ser entendidas como fatores. Neste caso, podemos alterar a classe da variável para fator utilizando a função `as.factor`.
 
 ``` r
 as.factor(airquality$Month)
 as.factor(airquality$Day)
 ```
 
-> Para alterar a classe de um objeto usamos as funções `as.` de acordo com a classe que desejamos. Acima usamos `as.factor` pra transformar uma variável númerica em fator. Outras opções são:
+> Para alterar a classe de um objeto, usamos as funções `as.` de acordo com a classe que desejamos. Acima usamos `as.factor` pra transformar uma variável númerica em fator. Outras opções são:
 > - `as.numeric`
 > - `as.character`
 > - `as.list`
@@ -148,7 +148,7 @@ str(airquality)
     ##  $ Month  : Factor w/ 5 levels "5","6","7","8",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ Day    : Factor w/ 31 levels "1","2","3","4",..: 1 2 3 4 5 6 7 8 9 10 ...
 
-Agora sim temos dias e meses sendo tradados como fatores (ou seja, variáveis categoricas).
+Agora sim temos dias e meses sendo tradados como fatores (ou seja, variáveis categóricas).
 
 Se usarmos o `summary` agora veremos que a função apenas retorna a contagem de cada nível de fator (ou categoria).
 
@@ -177,11 +177,11 @@ summary(airquality)
 
 Ordenar e filtrar dados são operações comuns quando se lida com dados. No R temos as funções `order` e `which` que realizam essas operações. Entretanto, elas não são tão intuitivas para usar.
 
-Acontece, que essas funções retornam um vetor numerico que indica as linhas ou colunas (dependendo da função em questão) que atendem ao critério que você determinou.
+Acontece que essas funções retornam um vetor numérico que indica as linhas ou colunas (dependendo da função em questão) que atendem ao critério que você determinou.
 
 #### Função `order`
 
-Por exemplo, queremos ordenar os dados de `airquality` de acordo com a temperatura, de forma crecente (do menor para o maior)
+Por exemplo, queremos ordenar os dados de `airquality` de acordo com a temperatura, de forma crescente (do menor para o maior).
 
 ``` r
 order(airquality$Temp)
@@ -235,12 +235,12 @@ head(airquality[order(airquality$Temp),])
 A função `which` funciona de maneira similar à função `order`, ao incluir o critério de filtro a função retorna o número das linhas que atendem ao critério estabelecido. Para isso usamos comandos de lógica.
 
 > **Comandos de lógica**
-> - `==` igual à
+> - `==` igual a
 > - `!=` diferente de
 > - `>` maior que
-> - `>=` maior ou igual à
+> - `>=` maior ou igual a
 > - `<` menor que
-> - `<=`menor ou igual à
+> - `<=`menor ou igual a
 > - `&` e
 > - `|` ou
 
@@ -282,3 +282,139 @@ airquality[which(airquality$Temp > 60 & airquality$Temp < 70),]
     ## 147     7      49 10.3   69     9  24
     ## 148    14      20 16.6   63     9  25
     ## 153    20     223 11.5   68     9  30
+
+Nomes
+=====
+
+Os objetos do R podem conter nomes, que podem ser muito úteis para escrever um código legível e que se auto-descreve.
+
+Para acessar nomes ao um vetor de numeros inteiros (integer)
+
+``` r
+x <- 1:3  
+names(x)  
+```
+
+    ## NULL
+
+``` r
+# nomeando os valores
+names(x) <- c("New York", "Seattle", "Los Angeles") 
+
+x
+```
+
+    ##    New York     Seattle Los Angeles 
+    ##           1           2           3
+
+``` r
+names(x)
+```
+
+    ## [1] "New York"    "Seattle"     "Los Angeles"
+
+Listas também podem ter nomes
+
+``` r
+ x <- list("Los Angeles" = 1, Boston = 2, London = 3)
+ x
+```
+
+    ## $`Los Angeles`
+    ## [1] 1
+    ## 
+    ## $Boston
+    ## [1] 2
+    ## 
+    ## $London
+    ## [1] 3
+
+``` r
+ names(x)
+```
+
+    ## [1] "Los Angeles" "Boston"      "London"
+
+Matrizes tem tanto nomes de colunas como de linhas.
+
+``` r
+m <- matrix(1:4, nrow = 2, ncol = 2)
+dimnames(m) <- list(c("a", "b"), c("c", "d"))
+m
+```
+
+    ##   c d
+    ## a 1 3
+    ## b 2 4
+
+Nomes de coluna e de linha podem ser configurados usando as funções `colnames` e `rownames`
+
+``` r
+colnames(m) <- c("h", "f") 
+rownames(m) <- c("s", "e") 
+```
+
+Assim como listas, data frames apresentam nomes de colunas que podem ser acessados tanto com a função `names` quanto com `colnames`
+
+``` r
+d <- as.data.frame(m)
+dimnames(d)
+```
+
+    ## [[1]]
+    ## [1] "s" "e"
+    ## 
+    ## [[2]]
+    ## [1] "h" "f"
+
+``` r
+# nome de coluna em matriz
+names(m)
+```
+
+    ## NULL
+
+``` r
+colnames(m)
+```
+
+    ## [1] "h" "f"
+
+``` r
+# nome de coluna em data frame
+names(d)
+```
+
+    ## [1] "h" "f"
+
+``` r
+colnames(d)
+```
+
+    ## [1] "h" "f"
+
+``` r
+# nome de linha em matriz
+rownames(m)
+```
+
+    ## [1] "s" "e"
+
+``` r
+row.names(m)
+```
+
+    ## [1] "s" "e"
+
+``` r
+# nome de linha em data frame
+rownames(d)
+```
+
+    ## [1] "s" "e"
+
+``` r
+row.names(d)
+```
+
+    ## [1] "s" "e"
