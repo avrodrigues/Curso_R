@@ -38,9 +38,6 @@ Instale e carregue o pacote `dplyr`
 library(dplyr)
 ```
 
-    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.12).
-    ## Please reinstall dplyr to avoid random crashes or undefined behavior.
-
 Função `select`
 ---------------
 
