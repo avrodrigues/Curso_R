@@ -71,9 +71,10 @@ Função `lapply`
 3.  Retorna uma lista como resultadon (O `l` é de lista)
 
 `lapply`possui 3 argumentos básicos:
-\* uma lista `X`
-\* uma função (ou o nome de uma função) `FUN`
-\* outros argumentos da função via `...`
+
+-   uma lista `X`
+-   uma função (ou o nome de uma função) `FUN`
+-   outros argumentos da função via `...`
 
 `lapply` admite outros tipos de objeto além de lista, porém o resultado é sempre uma lista.
 
@@ -85,13 +86,13 @@ lapply(x, mean)
 ```
 
     ## $a
-    ## [1] 0.1054477
+    ## [1] 0.3082321
     ## 
     ## $b
     ## [1] 75
     ## 
     ## $c
-    ## [1] 0.07852131
+    ## [1] 0.3264395
 
 Note que a função `mean` está como um argumento em `lappy` e portanto não necessita dos `()` ao final. Caso necessite incluir algum argumento relativo a função que você está aplicando, basta incluir uma `,` e adicionar o argumento como na função normal.
 
@@ -140,19 +141,19 @@ lapply(x, rnorm, mean = 1, sd = 0.5)
 ```
 
     ## [[1]]
-    ## [1] 1.706554
+    ## [1] 1.040312
     ## 
     ## [[2]]
-    ## [1] 1.6208712 0.3832425
+    ## [1] 1.2502982 0.7825499
     ## 
     ## [[3]]
-    ## [1] 0.819743 1.135081 1.280023
+    ## [1] 0.2780254 0.6352528 0.9063537
     ## 
     ## [[4]]
-    ## [1] 0.7788275 0.6623369 0.7442144 1.6054910
+    ## [1] 1.0398507 0.9129057 0.4201851 0.6127515
     ## 
     ## [[5]]
-    ## [1] 0.9801346 0.6462859 0.6060337 1.3113281 0.9161221
+    ## [1] 2.0138862 0.6344018 1.5234040 0.8146687 2.0630001
 
 A lógica por trás dessa maneira de usar `lapply` é que os valores no vetor são entendidos como o primeiro argumento de `rnorm`. Os outros argumentos de `rnorm` são configurados dentro da função `lapply`.
 
@@ -404,7 +405,7 @@ m <- matrix(runif(50, 10, 15), 10, 5)
 apply(m, 2, mean)
 ```
 
-    ## [1] 12.49421 11.30153 11.86380 12.31741 12.65053
+    ## [1] 12.13608 12.80259 12.44350 12.67017 12.96126
 
 Podemos fazer a soma de cada linha também:
 
@@ -412,8 +413,8 @@ Podemos fazer a soma de cada linha também:
 apply(m, 1, sum)
 ```
 
-    ##  [1] 61.64078 59.96849 61.71984 63.80003 58.78358 60.34093 62.76184
-    ##  [8] 55.54401 64.40894 57.30641
+    ##  [1] 58.10275 62.19151 65.36754 59.65908 68.01745 65.73839 54.33801
+    ##  [8] 61.96324 70.70561 64.05225
 
 > Note que nos dois casos `apply` retornou um vetor numérico como resultado.
 
@@ -457,12 +458,12 @@ Exemplo 1: vamos criar uma lista que contenha dados aleatórios de distribução
 mapply(rnorm, 5, 5, 1:5)
 ```
 
-    ##          [,1]      [,2]     [,3]     [,4]        [,5]
-    ## [1,] 6.113346 5.9940242 5.404014 6.515373 10.35463258
-    ## [2,] 4.394201 0.5647433 5.615290 8.471744  9.60468277
-    ## [3,] 5.075779 7.3252221 7.293796 6.385951 14.01172804
-    ## [4,] 5.479384 6.2439253 5.737749 3.358151  0.04208066
-    ## [5,] 5.268667 7.1557465 4.327261 4.155434 -0.44264271
+    ##          [,1]     [,2]      [,3]       [,4]       [,5]
+    ## [1,] 3.782616 5.678138  9.884158 12.1274905  8.6853152
+    ## [2,] 3.512011 3.382083  3.769903  0.2312697 -0.7253811
+    ## [3,] 5.381752 7.741395  7.784132  4.9589955  2.2970560
+    ## [4,] 5.747862 2.476091  2.566933  2.9402028  0.5554765
+    ## [5,] 5.656420 5.246543 10.638058  6.4440282 -6.0673248
 
 Isso passou o valor 5 para o primeiro e o segundo argumento de `rnorm` e a sequência `1:5` para o terceiro argumento de `rnom`.
 
@@ -472,7 +473,7 @@ Caso utilizássemos apenas a função `rnorm` com os argumentos configurados da 
 rnorm(5, 5, 1:5)
 ```
 
-    ## [1] 6.146310 6.683100 2.964058 2.709410 7.314509
+    ## [1] 4.142037 5.259773 8.705171 9.099852 7.222000
 
 A diferença é que para cada valor gerado a função `rnorm` utilizou um desvio padrão diferente.
 
@@ -487,12 +488,12 @@ matrix(c(rnorm(5, 5, 1),
        nrow = 5, ncol = 5)
 ```
 
-    ##          [,1]     [,2]       [,3]     [,4]      [,5]
-    ## [1,] 5.728749 2.055801  6.2954429 6.056267  8.296101
-    ## [2,] 5.562137 1.793768  1.9005815 2.612127 10.000663
-    ## [3,] 6.091239 5.748410 -0.6753324 6.781832  8.969645
-    ## [4,] 5.248991 4.583281  7.9897131 6.233287 14.500904
-    ## [5,] 4.855915 6.605596  4.7952136 7.092157  7.644754
+    ##          [,1]     [,2]     [,3]      [,4]        [,5]
+    ## [1,] 6.567593 5.840806 3.173540  5.444564 -0.04452862
+    ## [2,] 5.312262 6.501611 8.062785 -2.039101  4.36699871
+    ## [3,] 4.746929 3.205048 5.221110  5.240578  2.19477102
+    ## [4,] 4.441257 8.663218 7.358360 -6.438797  4.12066929
+    ## [5,] 5.337217 8.620375 7.477555  7.378145  3.72077674
 
 Exemplo 2:
 
