@@ -86,13 +86,13 @@ lapply(x, mean)
 ```
 
     ## $a
-    ## [1] 0.2314721
+    ## [1] -0.621485
     ## 
     ## $b
     ## [1] 75
     ## 
     ## $c
-    ## [1] 0.2384982
+    ## [1] -0.04454915
 
 Note que a função `mean` está como um argumento em `lappy` e portanto não necessita dos `()` ao final. Caso necessite incluir algum argumento relativo a função que você está aplicando, basta incluir uma `,` e adicionar o argumento como na função normal.
 
@@ -141,19 +141,19 @@ lapply(x, rnorm, mean = 1, sd = 0.5)
 ```
 
     ## [[1]]
-    ## [1] 1.464487
+    ## [1] 0.9674239
     ## 
     ## [[2]]
-    ## [1] 1.513127 1.096606
+    ## [1] 0.7181962 0.6577544
     ## 
     ## [[3]]
-    ## [1] 1.3097425 0.6277565 0.9324911
+    ## [1] 1.1512823 0.9416856 1.1534812
     ## 
     ## [[4]]
-    ## [1] 1.2600438 0.9322587 0.1670455 0.3270743
+    ## [1] 0.55160963 0.06408472 0.96519881 1.29590788
     ## 
     ## [[5]]
-    ## [1] 0.8871391 1.4367816 1.2956845 1.9638585 1.0876170
+    ## [1] 0.8005103 0.8605977 1.4961920 0.7555994 1.0498484
 
 A lógica por trás dessa maneira de usar `lapply` é que os valores no vetor são entendidos como o primeiro argumento de `rnorm`. Os outros argumentos de `rnorm` são configurados dentro da função `lapply`.
 
@@ -283,7 +283,7 @@ str(split)
 
 A função `split` é frequentemente usada em conjunto com `lapply` ou `sapply`. A ideia básica é que você pode pegar dados estruturados, dividí-los em subconjuntos baseados em uma variável e então aplicar uma função sobre esses subconjuntos. O resultado de aplicar uma função sobre esses subconjuntos é reuni-los e retorná-los como um objeto.
 
-Vamos utilizar os dados de `airquality` para exemplificar. Podemos dividir `airqulity` por mês e então extrair médias de Ozonio, radiação solar e vento por mês.
+Vamos utilizar os dados de `airquality` para exemplificar. Podemos dividir `airqulity` por mês e então extrair médias de Ozônio, radiação solar e vento por mês.
 
 ``` r
 s <- split(airquality, airquality$Month)
@@ -327,7 +327,7 @@ str(s)
     ##   ..$ Month  : int [1:30] 9 9 9 9 9 9 9 9 9 9 ...
     ##   ..$ Day    : int [1:30] 1 2 3 4 5 6 7 8 9 10 ...
 
-O objeto `s` contem uma lista com subconjuntos de data frames separados por mês Podemos, agora, aplicar a função `sapply` para gerar as médias de `Ozone`, `Solar.R` e `Wind` para cada mês.
+O objeto `s` contem uma lista com subconjuntos de data frames separados por mês. Podemos, agora, aplicar a função `sapply` para gerar as médias de `Ozone`, `Solar.R` e `Wind` para cada mês.
 
 ``` r
 sapply(s, function(x){
@@ -409,7 +409,7 @@ m <- matrix(runif(50, 10, 15), 10, 5)
 apply(m, 2, mean)
 ```
 
-    ## [1] 12.02967 12.18659 12.59986 12.25613 11.95350
+    ## [1] 12.20895 11.36277 12.71333 11.78287 11.68735
 
 Podemos fazer a soma de cada linha também:
 
@@ -417,8 +417,8 @@ Podemos fazer a soma de cada linha também:
 apply(m, 1, sum)
 ```
 
-    ##  [1] 62.55131 58.11572 63.99578 61.26354 63.24201 55.30025 58.18557
-    ##  [8] 64.28551 60.56229 62.75554
+    ##  [1] 56.89858 53.62626 57.88144 64.57483 63.44318 58.54126 63.04467
+    ##  [8] 55.87156 63.43051 60.24040
 
 > Note que nos dois casos `apply` retornou um vetor numérico como resultado.
 
@@ -462,12 +462,12 @@ Exemplo 1: vamos criar uma lista que contenha dados aleatórios de distribução
 mapply(rnorm, 5, 5, 1:5)
 ```
 
-    ##          [,1]     [,2]        [,3]      [,4]      [,5]
-    ## [1,] 5.952738 6.273453 11.39426938 6.1597524  4.435273
-    ## [2,] 5.988754 5.625841  8.32468680 7.2851513  6.525822
-    ## [3,] 5.000047 3.555313  0.04764146 0.3110617  7.225192
-    ## [4,] 5.619514 6.331795  5.39113495 6.2628870  1.558693
-    ## [5,] 5.723491 7.352955 10.04876914 4.9249827 -1.655945
+    ##          [,1]     [,2]     [,3]        [,4]       [,5]
+    ## [1,] 5.090040 5.976611 5.981626 -0.08783138  0.6110579
+    ## [2,] 6.450848 6.225306 3.994548  3.22855682  6.1995883
+    ## [3,] 6.297355 9.090238 7.380939 10.02208220  3.6633567
+    ## [4,] 6.707618 4.220608 9.041076  4.71091452  5.3313318
+    ## [5,] 6.244958 6.235638 1.131475  8.86331377 10.0249213
 
 Isso passou o valor 5 para o primeiro e o segundo argumento de `rnorm` e a sequência `1:5` para o terceiro argumento de `rnom`.
 
@@ -477,7 +477,7 @@ Caso utilizássemos apenas a função `rnorm` com os argumentos configurados da 
 rnorm(5, 5, 1:5)
 ```
 
-    ## [1] 7.077965 5.653506 6.951465 7.186902 5.975965
+    ## [1]  4.227825  6.314514  8.537685  3.316463 -1.003712
 
 A diferença é que para cada valor gerado a função `rnorm` utilizou um desvio padrão diferente.
 
@@ -492,12 +492,12 @@ matrix(c(rnorm(5, 5, 1),
        nrow = 5, ncol = 5)
 ```
 
-    ##          [,1]      [,2]     [,3]      [,4]        [,5]
-    ## [1,] 4.920899 6.0629673 7.826349  6.655645 -1.03323365
-    ## [2,] 4.484838 0.2406666 5.344385  6.995585 -0.07928345
-    ## [3,] 5.631107 4.7082781 6.374751  8.193648 11.25638805
-    ## [4,] 4.541082 4.5040547 6.475854 12.756980 10.13779773
-    ## [5,] 5.718151 4.1302528 1.683156  3.173909 -1.83418913
+    ##          [,1]     [,2]     [,3]      [,4]      [,5]
+    ## [1,] 6.977213 6.009666 5.060329  8.793966  4.447513
+    ## [2,] 5.711466 2.951838 4.801402  3.041487 -1.949294
+    ## [3,] 4.326431 3.411093 6.203508  8.364968  7.615633
+    ## [4,] 5.720255 4.667294 8.431771  7.779943  7.104662
+    ## [5,] 5.034672 3.199155 3.957103 -1.008553  8.820552
 
 Exemplo 2:
 
