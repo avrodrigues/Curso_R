@@ -8,13 +8,17 @@ Nesta tarefa, serão construídos quatro gráficos que irão compor uma única i
 
 Para isso você deve criar dois objetos com 50 valores aleatórios de distribuição normal. Um objeto deve conter valores com média 5 e desvio padrão 2 e o outro deve conter valores com média 5 e desvio padrão 0.5.
 
-A partir desses dois objetos crie: 1 - Um gráfico de pontos, 2 - Um gráfico boxplot comparando os dois conjuntos 3 - Um histograma de cada objeto, com eixo x mostrando valores de 0 a 10 nos dois histogramas.
+A partir desses dois objetos crie:
 
-> Cada gráfico deve ter um título em português.
-> Esse quatros gráficos devem compor apenas uma imagem.
-> Utilize o argumento `mfrow` da função `par()` para esse fim.
+1 - Um gráfico de pontos
+2 - Um gráfico boxplot comparando os dois conjuntos
+3 - Um histograma de cada objeto, com eixo x mostrando valores de 0 a 10 nos dois histogramas
+
+-   Cada gráfico deve ter um título em português
+
+-   Utilize o argumento `mfrow` da função `par()` para compor uma imagem com mais de um gráfico
 
 Para completar essa tarefa insira dois anexos: o Script usado (Nome\_do\_Script.R) e a Imagem criada (imagem\_gráficos.jpeg) no **Classroom** até a data limite.
 
 O gráfico final deve ser semelhante a este:
-![](Tarefa_Aula_1.jpeg)
+![](C:/Users/arthu/Google%20Drive/Curso%20Linguagem%20R/Analise%20Ecologica%20no%20R%20(Restaurar)/Tarefa_Aula_1.jpeg)
