@@ -21,4 +21,4 @@ A partir desses dois objetos crie:
 Para completar essa tarefa insira dois anexos: o Script usado (Nome\_do\_Script.R) e a Imagem criada (imagem\_gráficos.jpeg) no **Classroom** até a data limite.
 
 O gráfico final deve ser semelhante a este:
-![]( avrodrigues.github.io/Aula 1/Tarefa_Aula_1.jpeg )
+![](Aula 1/Tarefa_Aula_1.jpeg)
