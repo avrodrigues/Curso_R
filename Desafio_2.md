@@ -62,10 +62,10 @@ Note que você precisa extrair dados dos dois arquivos e depois criar um data fr
 
 Há diversas abordagens para realizar esta tarefa. Porém, eu sugiro que você:
 
-1.  crie uma nova variável para `measurementorfact.txt` com apenas o ano de amostragem
-2.  selecione os dados com base no ano
-3.  utilize o `id` desta seleção para extrair o nome científico e a subparcela em `occurrence.txt`
-4.  crie o data frame final para o ano selecionado.
+1.  Crie uma nova variável para `measurementorfact.txt` com apenas o ano de amostragem
+2.  Selecione os dados com base no ano
+3.  Utilize o `id` desta seleção para extrair o nome científico e a subparcela em `occurrence.txt`
+4.  Crie o data frame final para o ano selecionado.
 
 As funções do pacote `dplyr` serão muito úteis nessa atividade.
 
