@@ -1,7 +1,7 @@
 Funções `apply`
 ================
 
-*Texto traduzido e adapado com base no capítulo 18 do livro 'R Programming for Data Science' de Roger D. Peng que pode ser adquirido em <http://leanpub.com/rprogramming>*
+*Texto traduzido e adaptado com base no capítulo 18 do livro 'R Programming for Data Science' de Roger D. Peng que pode ser adquirido em <http://leanpub.com/rprogramming>*
 
 Trabalhando com data frames frequentemente necessitamos realizar operações em loop, ou seja, aplicar uma função a diversos fatores de um data frame.
 
@@ -12,7 +12,7 @@ As funções `apply` implementam loopings numa forma compacta.
 -   `lapply`: Faz loop sobre uma lista e aplica a função a cada elemento
 -   `sapply`: Igual ao `lapply` mas simplifica o resultado
 -   `apply`: Aplica uma função à margem de uma matriz
--   `tapply`: Aplica uma função à subgrupos de um vetor
+-   `tapply`: Aplica uma função a subgrupos de um vetor
 -   `mapply`: versão multivariada de lapply
 
 > A função `split` pode auxiliar na operação de `tapply`
@@ -41,7 +41,7 @@ soma.quadrado(2,2)
 > -   Assinalmos a função ao objeto `soma.quadrado` que será um objeto do tipo função salvo no Ambiente Global do R
 > -   Ao utilizar `soma.quadrado` informamos os valores dos argumentos `a` e `b` entre parentesis `()`
 
-Podemos incluir valores padrão para algum argumento, então ao utilizar a função o argumento que possui um valor padronizado pode ser omitido
+Podemos incluir valores padrão para algum argumento, então ao utilizar a função o argumento que possui um valor padronizado pode ser omitido.
 
 Por exemplo, em `soma.quadrado` vamos padronizar `b = 2`.
 
@@ -63,10 +63,10 @@ soma.quadrado(2,7)
 
 > Note que se omitimos o valor de `b` a função usa o valor padrão para completar a operação.
 
-`lapply`
---------
+Função `lapply`
+---------------
 
-1.  Faz loop sobre uma lista, iteragindo com cada elemento dessa lista
+1.  Faz loop sobre uma lista, interagindo com cada elemento dessa lista
 2.  Aplica uma função a cada elemento dessa lista (uma função que você especifica)
 3.  Retorna uma lista como resultadon (O `l` é de lista)
 
@@ -75,7 +75,7 @@ soma.quadrado(2,7)
 \* uma função (ou o nome de uma função) `FUN`
 \* outros argumentos da função via `...`
 
-`lapply` adimite outros tipos de objeto além de lista, porém o resultado é sempre uma lista.
+`lapply` admite outros tipos de objeto além de lista, porém o resultado é sempre uma lista.
 
 Aqui aplicamos a função `mean` a todos os elementos de uma lista como exemplo
 
@@ -85,13 +85,13 @@ lapply(x, mean)
 ```
 
     ## $a
-    ## [1] 0.009949949
+    ## [1] 0.1054477
     ## 
     ## $b
     ## [1] 75
     ## 
     ## $c
-    ## [1] -0.2248054
+    ## [1] 0.07852131
 
 Note que a função `mean` está como um argumento em `lappy` e portanto não necessita dos `()` ao final. Caso necessite incluir algum argumento relativo a função que você está aplicando, basta incluir uma `,` e adicionar o argumento como na função normal.
 
@@ -132,7 +132,7 @@ lapply(airquality, mean, na.rm = TRUE)
     ## $Day
     ## [1] 15.80392
 
-Você pode usar o `lapply` para rodar uma função multiplas vezes, cada vez com um argumento diferente. Abaixo, usamos a função `rnorm` para gerar valores de distribuição normal 5 vezes, cada vez com um número diferente de valores. Além disso, informamos que os valores gerados devem ter média = 1 e desvio padrão = 0.5
+Você pode usar o `lapply` para rodar uma função múltiplas vezes, cada vez com um argumento diferente. Abaixo, usamos a função `rnorm` para gerar valores de distribuição normal 5 vezes, cada vez com um número diferente de valores. Além disso, informamos que os valores gerados devem ter média = 1 e desvio padrão = 0.5
 
 ``` r
 x <- 1:5
@@ -140,23 +140,23 @@ lapply(x, rnorm, mean = 1, sd = 0.5)
 ```
 
     ## [[1]]
-    ## [1] 1.258916
+    ## [1] 1.706554
     ## 
     ## [[2]]
-    ## [1] 1.88194587 0.07186618
+    ## [1] 1.6208712 0.3832425
     ## 
     ## [[3]]
-    ## [1] 0.8416410 0.4911513 0.9745213
+    ## [1] 0.819743 1.135081 1.280023
     ## 
     ## [[4]]
-    ## [1] 1.3473088 0.6194758 1.1666961 1.8486245
+    ## [1] 0.7788275 0.6623369 0.7442144 1.6054910
     ## 
     ## [[5]]
-    ## [1] 1.0890551 1.1537042 1.1061859 0.3871502 1.4839532
+    ## [1] 0.9801346 0.6462859 0.6060337 1.3113281 0.9161221
 
-A lógica por tras dessa maneira de usar `lapply` é que os valores no vetor são entendidos como o primeiro argumento de `rnorm`. Os outros argumentos de `rnorm` são configurados dentro da função `lapply`.
+A lógica por trás dessa maneira de usar `lapply` é que os valores no vetor são entendidos como o primeiro argumento de `rnorm`. Os outros argumentos de `rnorm` são configurados dentro da função `lapply`.
 
-Podemos criar uma função anônima e aplica-lá `lapply` e seus familiares. Uma função anônima é uma função criada que não fica salva no Ambiente Global. Ela é utilizada apenas enquanto você usa o `lapply`.
+Podemos criar uma função anônima e aplicá-la `lapply` e seus familiares. Uma função anônima é uma função criada que não fica salva no Ambiente Global. Ela é utilizada apenas enquanto você usa o `lapply`.
 
 Aqui vou criar uma lista com duas matrizes e selecionar apenas a primeira coluna delas via função anônima.
 
@@ -171,7 +171,7 @@ lapply(lista, function(elem) elem[,1])
     ## $b
     ## [1] 1 2 3 4 5
 
-Acima, definimos uma nova função diretamente dentro ada função `lappy`. Caso a função seja muito complexa é mais indicado que se crie a função primeiro e depois aplique ela via `lapply`. Veja abaixo:
+Acima, definimos uma nova função diretamente dentro da função `lappy`. Caso a função seja muito complexa é mais indicado que se crie a função primeiro e depois aplique via `lapply`. Veja abaixo:
 
 ``` r
 f <- function(elem){
@@ -187,10 +187,10 @@ lapply (lista, f)
     ## $b
     ## [1] 1 2 3 4 5
 
-Agora já não temos mais uma função anônima, uma vez que ela tem um nome (`f`). Se você define uma função ou usa uma função anônima depende do contexto. se você pretende utilizar mais vezes a função ao longo do seu código, vale a pena criar a função. Por outro lado, se ela será usada apenas uma vez via `lapply` é mais conveniente usá-la como função anônima.
+Agora já não temos mais uma função anônima, uma vez que ela tem um nome (`f`). Se você define uma função ou usa uma função anônima depende do contexto. Se você pretende utilizar mais vezes a função ao longo do seu código, vale a pena criar a função. Por outro lado, se ela será usada apenas uma vez via `lapply` é mais conveniente usá-la como função anônima.
 
-`sapply`
---------
+Função `sapply`
+---------------
 
 A função `sapply` funciona da mesma maneira que `lapply`, porém produz um resultado mais simplificado, em forma de vetor ou matriz. Essencialmente, `sapply` roda `lapply` internamente e altera apenas a apresentação do resultado.
 
@@ -229,7 +229,7 @@ sapply(airquality, mean, na.rm = TRUE)
     ##      Ozone    Solar.R       Wind       Temp      Month        Day 
     ##  42.129310 185.931507   9.957516  77.882353   6.993464  15.803922
 
-Como o resultado em `lapply` era uma listas de elementos com comprimento 1 `sapply` retorna um vetor como resultado, o que é frequentemente mais útil que uma lista.
+Como o resultado em `lapply` era uma lista de elementos com comprimento 1 `sapply` retorna um vetor como resultado, o que é frequentemente mais útil que uma lista.
 
 Abaixo, utilizei a função `range` para extrair o valor mínimo e máximo de `airquality`. Como cada elemento do resultado de `lapply` tem comprimento maior que 1, `sapply` retorna uma matriz.
 
@@ -263,10 +263,10 @@ sapply(airquality, range, na.rm = TRUE)
     ## [1,]     1       7  1.7   56     5   1
     ## [2,]   168     334 20.7   97     9  31
 
-`split`
--------
+Função `split`
+--------------
 
-A função `split` pega um vetor ou um objeto e divide ele em grupos determinados por um fator ou uma lista de fatores.
+A função `split` pega um vetor ou um objeto e o divide em grupos determinados por um fator ou uma lista de fatores.
 
 ``` r
 str(split)
@@ -274,9 +274,9 @@ str(split)
 
     ## function (x, f, drop = FALSE, ...)
 
-`split` possui 3 argumentos: \* `x`, é um vetor (ou lista) ou data frame \* `f` é um fator ou uma lista de fatores \* `drop` indica se níveis de fator vazios devem ser descartado
+`split` possui 3 argumentos: \* `x`, é um vetor (ou lista) ou data frame \* `f` é um fator ou uma lista de fatores \* `drop` indica se níveis de fator vazios devem ser descartados
 
-A função `split` é frequentemente usada em conjunto com `lapply` ou `sapply`. A ideia básica é que você pode pegar dados estruturados, dividi-los em subconjuntos baseados em uma variável e então aplicar uma função sobre esses subconjuntos. O resultado de aplicar uma função sobre esses subconjuntos são reunidos e retornados como um objeto.
+A função `split` é frequentemente usada em conjunto com `lapply` ou `sapply`. A ideia básica é que você pode pegar dados estruturados, dividí-los em subconjuntos baseados em uma variável e então aplicar uma função sobre esses subconjuntos. O resultado de aplicar uma função sobre esses subconjuntos é reuni-los e retorná-los como um objeto.
 
 Vamos utilizar os dados de `airquality` para exemplificar. Podemos dividir `airqulity` por mês e então extrair médias de Ozonio, radiação solar e vento por mês.
 
@@ -349,8 +349,8 @@ sapply(s, function(x){
     ## Solar.R 181.29630 190.16667 216.483871 171.857143 167.43333
     ## Wind     11.62258  10.26667   8.941935   8.793548  10.18000
 
-`tapply`
---------
+Função `tapply`
+---------------
 
 `taplly` é usado para aplicar uma função em subconjuntos de um vetor. Pode ser entendido como uma combinação de `split` e `sapply` aplicados apenas a vetores.
 
@@ -379,8 +379,8 @@ tapply(airquality$Ozone, INDEX = airquality$Month, mean, na.rm = TRUE)
 
 > Note que diferentemente do que fizemos com a combinação de `split` e `sapply` aqui informamos apenas um vetor como primeiro argumento, pois `tapply` não aceita mais de um vetor como dado de entrada. Perceba também que indicamos o argumento `na.rm = TRUE` que foi usado na função `mean`.
 
-`apply`
--------
+Função `apply`
+--------------
 
 A função `apply` é usada para aplicar uma função (geralmente uma anônima) sobre as margens de uma matriz. Uma matriz possui duas margens, uma margem representa as linhas e outra representa as colunas.
 
@@ -404,7 +404,7 @@ m <- matrix(runif(50, 10, 15), 10, 5)
 apply(m, 2, mean)
 ```
 
-    ## [1] 12.04268 12.65710 11.88971 12.92042 11.98813
+    ## [1] 12.49421 11.30153 11.86380 12.31741 12.65053
 
 Podemos fazer a soma de cada linha também:
 
@@ -412,8 +412,8 @@ Podemos fazer a soma de cada linha também:
 apply(m, 1, sum)
 ```
 
-    ##  [1] 61.39345 59.10920 64.40188 56.02039 60.39310 63.12963 63.78174
-    ##  [8] 62.64819 59.57721 64.52564
+    ##  [1] 61.64078 59.96849 61.71984 63.80003 58.78358 60.34093 62.76184
+    ##  [8] 55.54401 64.40894 57.30641
 
 > Note que nos dois casos `apply` retornou um vetor numérico como resultado.
 
@@ -427,12 +427,12 @@ Em casos especiais de soma ou média de linhas/colunas existem funções de atal
 -   `colSums` = `apply(x, 2, sum)`
 -   `colMeans` = `apply(x, 2, mean)`
 
-As funções acima realizam a mesma tarefa, com alguma diferença em relação ao tempo de computação poderá ser notado em grandes volumes de dados. Um aspecto interessante é que usar `colMeans` ao invés de `apply(x, 2, mean)` deixa seu código mais compreesivel para quem o lê.
+As funções acima realizam a mesma tarefa, alguma diferença em relação ao tempo de computação poderá ser notado em grandes volumes de dados. Um aspecto interessante é que usar `colMeans` ao invés de `apply(x, 2, mean)` deixa seu código mais compreensível para quem o lê.
 
-`mapply`
---------
+Função `mapply`
+---------------
 
-A função `mapply` é um tipo de `apply` multivariado que aplica uma função em paralelo sobre um conjunto de argumentos. Lembre-se que `lapply` e as funções irmãs iteragem sobre um unico objeto. Se você deseja uma iteração sobre multiplos objetos do R em paralelo `mapply` é desenha para isso.
+A função `mapply` é um tipo de `apply` multivariado que aplica uma função em paralelo sobre um conjunto de argumentos. Lembre-se que `lapply` e as funções irmãs interagem sobre um único objeto. Se você deseja uma iteração sobre múltiplos objetos do R em paralelo, `mapply` é desenhada para isso.
 
 ``` r
 str(mapply)
@@ -442,14 +442,14 @@ str(mapply)
 
 Os argumentos de `mapply` são:
 
--   `FUN` é a funçaõ a ser aplicada
--   `...` contem os objetos R em que será aplicada a função
+-   `FUN` é a função a ser aplicada
+-   `...` contém os objetos R em que será aplicada a função
 -   `MoreArgs` é uma lista de outros argumento de `FUN`
 -   `SIMPLIFY` indica se o resultado deve ser simplicadado
 
-O uso de `mapply` é um pouco diferente das outras funções (como `lapply`) pois o primeiro argumento é uma função, ao invés de um objeto. Os objetos sobre os quais aplicamos a função são dados é dado por `...` pois adimite um número arbitrário de objetos.
+O uso de `mapply` é um pouco diferente das outras funções (como `lapply`) pois o primeiro argumento é uma função, ao invés de um objeto. Os objetos sobre os quais aplicamos a função são dados por `...` pois admite um número arbitrário de objetos.
 
-Nos exemplos abaixo vamos explorar como a função `mapply` é util quando desejamos simular dados alterando os paramêtros a cada simulação.
+Nos exemplos abaixo vamos explorar como a função `mapply` é útil quando desejamos simular dados alterando os paramêtros a cada simulação.
 
 Exemplo 1: vamos criar uma lista que contenha dados aleatórios de distribução normal. Desejamos que a função gere 5 valores com média 5 e desvio padrão de 1 a 5.
 
@@ -457,14 +457,14 @@ Exemplo 1: vamos criar uma lista que contenha dados aleatórios de distribução
 mapply(rnorm, 5, 5, 1:5)
 ```
 
-    ##          [,1]     [,2]      [,3]      [,4]      [,5]
-    ## [1,] 4.070031 2.533801  7.043619 -6.031065  3.370701
-    ## [2,] 5.495854 2.770721  7.611960 13.522264  8.435365
-    ## [3,] 5.511527 3.030537  8.839249  7.730154  3.831320
-    ## [4,] 4.439725 4.853392 11.511212  6.144414 15.045267
-    ## [5,] 5.529884 4.894231  6.136328  2.291791 12.729831
+    ##          [,1]      [,2]     [,3]     [,4]        [,5]
+    ## [1,] 6.113346 5.9940242 5.404014 6.515373 10.35463258
+    ## [2,] 4.394201 0.5647433 5.615290 8.471744  9.60468277
+    ## [3,] 5.075779 7.3252221 7.293796 6.385951 14.01172804
+    ## [4,] 5.479384 6.2439253 5.737749 3.358151  0.04208066
+    ## [5,] 5.268667 7.1557465 4.327261 4.155434 -0.44264271
 
-Isso passou o valor 5 para o primeiro e o segundo argumento de `rnorm` e a sequencia `1:5` para o terceiro argumento de `rnom`.
+Isso passou o valor 5 para o primeiro e o segundo argumento de `rnorm` e a sequência `1:5` para o terceiro argumento de `rnom`.
 
 Caso utilizássemos apenas a função `rnorm` com os argumentos configurados da mesma maneira este seria o resultado
 
@@ -472,7 +472,7 @@ Caso utilizássemos apenas a função `rnorm` com os argumentos configurados da 
 rnorm(5, 5, 1:5)
 ```
 
-    ## [1]  5.548229  4.891705 11.556401  5.921558  0.172474
+    ## [1] 6.146310 6.683100 2.964058 2.709410 7.314509
 
 A diferença é que para cada valor gerado a função `rnorm` utilizou um desvio padrão diferente.
 
@@ -487,12 +487,12 @@ matrix(c(rnorm(5, 5, 1),
        nrow = 5, ncol = 5)
 ```
 
-    ##          [,1]     [,2]     [,3]       [,4]      [,5]
-    ## [1,] 4.226175 1.410242 2.356296  9.0137017  4.775629
-    ## [2,] 4.755090 4.893536 9.717529  0.4490765 12.784220
-    ## [3,] 3.623855 4.108640 1.272685 10.7843523  4.985474
-    ## [4,] 3.936158 7.785902 5.366488  4.4772612  2.771010
-    ## [5,] 4.673426 3.668127 4.388594 11.9390079  3.781520
+    ##          [,1]     [,2]       [,3]     [,4]      [,5]
+    ## [1,] 5.728749 2.055801  6.2954429 6.056267  8.296101
+    ## [2,] 5.562137 1.793768  1.9005815 2.612127 10.000663
+    ## [3,] 6.091239 5.748410 -0.6753324 6.781832  8.969645
+    ## [4,] 5.248991 4.583281  7.9897131 6.233287 14.500904
+    ## [5,] 4.855915 6.605596  4.7952136 7.092157  7.644754
 
 Exemplo 2:
 
