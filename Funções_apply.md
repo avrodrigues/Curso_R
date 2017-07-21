@@ -86,13 +86,13 @@ lapply(x, mean)
 ```
 
     ## $a
-    ## [1] 0.3082321
+    ## [1] 0.2314721
     ## 
     ## $b
     ## [1] 75
     ## 
     ## $c
-    ## [1] 0.3264395
+    ## [1] 0.2384982
 
 Note que a função `mean` está como um argumento em `lappy` e portanto não necessita dos `()` ao final. Caso necessite incluir algum argumento relativo a função que você está aplicando, basta incluir uma `,` e adicionar o argumento como na função normal.
 
@@ -141,19 +141,19 @@ lapply(x, rnorm, mean = 1, sd = 0.5)
 ```
 
     ## [[1]]
-    ## [1] 1.040312
+    ## [1] 1.464487
     ## 
     ## [[2]]
-    ## [1] 1.2502982 0.7825499
+    ## [1] 1.513127 1.096606
     ## 
     ## [[3]]
-    ## [1] 0.2780254 0.6352528 0.9063537
+    ## [1] 1.3097425 0.6277565 0.9324911
     ## 
     ## [[4]]
-    ## [1] 1.0398507 0.9129057 0.4201851 0.6127515
+    ## [1] 1.2600438 0.9322587 0.1670455 0.3270743
     ## 
     ## [[5]]
-    ## [1] 2.0138862 0.6344018 1.5234040 0.8146687 2.0630001
+    ## [1] 0.8871391 1.4367816 1.2956845 1.9638585 1.0876170
 
 A lógica por trás dessa maneira de usar `lapply` é que os valores no vetor são entendidos como o primeiro argumento de `rnorm`. Os outros argumentos de `rnorm` são configurados dentro da função `lapply`.
 
@@ -275,7 +275,11 @@ str(split)
 
     ## function (x, f, drop = FALSE, ...)
 
-`split` possui 3 argumentos: \* `x`, é um vetor (ou lista) ou data frame \* `f` é um fator ou uma lista de fatores \* `drop` indica se níveis de fator vazios devem ser descartados
+`split` possui 3 argumentos:
+
+-   `x`, é um vetor (ou lista) ou data frame
+-   `f` é um fator ou uma lista de fatores
+-   `drop` indica se níveis de fator vazios devem ser descartados
 
 A função `split` é frequentemente usada em conjunto com `lapply` ou `sapply`. A ideia básica é que você pode pegar dados estruturados, dividí-los em subconjuntos baseados em uma variável e então aplicar uma função sobre esses subconjuntos. O resultado de aplicar uma função sobre esses subconjuntos é reuni-los e retorná-los como um objeto.
 
@@ -405,7 +409,7 @@ m <- matrix(runif(50, 10, 15), 10, 5)
 apply(m, 2, mean)
 ```
 
-    ## [1] 12.13608 12.80259 12.44350 12.67017 12.96126
+    ## [1] 12.02967 12.18659 12.59986 12.25613 11.95350
 
 Podemos fazer a soma de cada linha também:
 
@@ -413,8 +417,8 @@ Podemos fazer a soma de cada linha também:
 apply(m, 1, sum)
 ```
 
-    ##  [1] 58.10275 62.19151 65.36754 59.65908 68.01745 65.73839 54.33801
-    ##  [8] 61.96324 70.70561 64.05225
+    ##  [1] 62.55131 58.11572 63.99578 61.26354 63.24201 55.30025 58.18557
+    ##  [8] 64.28551 60.56229 62.75554
 
 > Note que nos dois casos `apply` retornou um vetor numérico como resultado.
 
@@ -458,12 +462,12 @@ Exemplo 1: vamos criar uma lista que contenha dados aleatórios de distribução
 mapply(rnorm, 5, 5, 1:5)
 ```
 
-    ##          [,1]     [,2]      [,3]       [,4]       [,5]
-    ## [1,] 3.782616 5.678138  9.884158 12.1274905  8.6853152
-    ## [2,] 3.512011 3.382083  3.769903  0.2312697 -0.7253811
-    ## [3,] 5.381752 7.741395  7.784132  4.9589955  2.2970560
-    ## [4,] 5.747862 2.476091  2.566933  2.9402028  0.5554765
-    ## [5,] 5.656420 5.246543 10.638058  6.4440282 -6.0673248
+    ##          [,1]     [,2]        [,3]      [,4]      [,5]
+    ## [1,] 5.952738 6.273453 11.39426938 6.1597524  4.435273
+    ## [2,] 5.988754 5.625841  8.32468680 7.2851513  6.525822
+    ## [3,] 5.000047 3.555313  0.04764146 0.3110617  7.225192
+    ## [4,] 5.619514 6.331795  5.39113495 6.2628870  1.558693
+    ## [5,] 5.723491 7.352955 10.04876914 4.9249827 -1.655945
 
 Isso passou o valor 5 para o primeiro e o segundo argumento de `rnorm` e a sequência `1:5` para o terceiro argumento de `rnom`.
 
@@ -473,7 +477,7 @@ Caso utilizássemos apenas a função `rnorm` com os argumentos configurados da 
 rnorm(5, 5, 1:5)
 ```
 
-    ## [1] 4.142037 5.259773 8.705171 9.099852 7.222000
+    ## [1] 7.077965 5.653506 6.951465 7.186902 5.975965
 
 A diferença é que para cada valor gerado a função `rnorm` utilizou um desvio padrão diferente.
 
@@ -488,12 +492,12 @@ matrix(c(rnorm(5, 5, 1),
        nrow = 5, ncol = 5)
 ```
 
-    ##          [,1]     [,2]     [,3]      [,4]        [,5]
-    ## [1,] 6.567593 5.840806 3.173540  5.444564 -0.04452862
-    ## [2,] 5.312262 6.501611 8.062785 -2.039101  4.36699871
-    ## [3,] 4.746929 3.205048 5.221110  5.240578  2.19477102
-    ## [4,] 4.441257 8.663218 7.358360 -6.438797  4.12066929
-    ## [5,] 5.337217 8.620375 7.477555  7.378145  3.72077674
+    ##          [,1]      [,2]     [,3]      [,4]        [,5]
+    ## [1,] 4.920899 6.0629673 7.826349  6.655645 -1.03323365
+    ## [2,] 4.484838 0.2406666 5.344385  6.995585 -0.07928345
+    ## [3,] 5.631107 4.7082781 6.374751  8.193648 11.25638805
+    ## [4,] 4.541082 4.5040547 6.475854 12.756980 10.13779773
+    ## [5,] 5.718151 4.1302528 1.683156  3.173909 -1.83418913
 
 Exemplo 2:
 
