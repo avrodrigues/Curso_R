@@ -3,7 +3,7 @@ Pacote `dplyr`
 
 *Texto traduzido e adapado a partir do capítulo 13 do livro 'R Programming for Data Science' de Roger D. Peng que pode ser adquirido em <http://leanpub.com/rprogramming>*
 
-O pacote `dplyr` contem ferramentas que facilitam ou tornam mais intuitiva a manipulação de data frames. A principal contribuição deste pacote é a implementação de uma "grámatica" para lidar com os dados. Podemos encarar as funções como verbos desta gramática. Com esta gramática, fica mais clara a comunicação do que está sendo feito com um data frame.
+O pacote `dplyr` contém ferramentas que facilitam ou tornam mais intuitiva a manipulação de data frames. A principal contribuição deste pacote é a implementação de uma "grámatica" para lidar com os dados. Podemos encarar as funções como verbos desta gramática. Com esta gramática, fica mais clara a comunicação do que está sendo feito com o data frame.
 
 Gramática `dplyr`
 -----------------
@@ -24,10 +24,10 @@ Propriedades comuns as funções de `dplyr`
 
 Poucas características são compartilhadas entre todas as funções deste pacote. Em particular:
 
-1.  o primeiro argumento é um data frame
-2.  os argumentos subsequentes descrevem o que deve ser feito com o data frame especificado no primeiro argumento
-3.  o resultado é um novo data frame
-4.  os data frames devem estar formatados de maneira organizada. Em suma, deve haver uma observação por linha e cada coluna deve representar uma característica ou variável da observação
+1.  O primeiro argumento é um data frame
+2.  Os argumentos subsequentes descrevem o que deve ser feito com o data frame especificado no primeiro argumento
+3.  O resultado é um novo data frame
+4.  Os data frames devem estar formatados de maneira organizada. Em suma, deve haver uma observação por linha e cada coluna deve representar uma característica ou variável da observação
 
 Instale e carregue o pacote `dplyr`
 -----------------------------------
@@ -38,19 +38,8 @@ Instale e carregue o pacote `dplyr`
 library(dplyr)
 ```
 
-    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.11).
+    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.12).
     ## Please reinstall dplyr to avoid random crashes or undefined behavior.
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
 
 Função `select`
 ---------------
