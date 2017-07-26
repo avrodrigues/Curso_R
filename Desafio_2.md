@@ -58,7 +58,7 @@ O arquivo `occurrence.txt` possui 34 colunas, aqui descrevo o conteúdo de algum
 | eventDate         | Data do evento                    |
 | scientificName    | Nome científico                   |
 
-Note que você precisa extrair dados dos dois arquivos e depois criar um data frame com `spp` `parc` e `dap`.
+Note que você precisa extrair dados dos dois arquivos e depois criar um data frame com `spp`, `parc` e `dap`.
 
 Há diversas abordagens para realizar esta tarefa. Porém, eu sugiro que você:
 
