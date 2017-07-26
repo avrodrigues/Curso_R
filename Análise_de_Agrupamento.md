@@ -198,7 +198,7 @@ A análise indicou a presença de quatro grupos, resta produzir o dendrograma co
 Passo 5 - Gerar um gráfico (dendrograma) que mostre os grupos identificados pela análise
 ----------------------------------------------------------------------------------------
 
-Para gerar esse gráfico vamos utilizar uma função criada `hcoplot`por Bocard el al (2011) **[BAIXE AQUI](hcoplot.R)**. Baixe o script da função para a pasta de trabalho do R. Quando uma função está dentro de um scrit podemos usar `source`para carregar a função sem abrir o script. Você também pode abrir o script e rodar tudo que funciona do mesmo jeito.
+Para gerar esse gráfico vamos utilizar uma função criada `hcoplot`por Bocard el al (2011) (**[(baixe aqui)](hcoplot.R)**. Baixe o script da função para a pasta de trabalho do R. Quando uma função está dentro de um scrit podemos usar `source`para carregar a função sem abrir o script. Você também pode abrir o script e rodar tudo que funciona do mesmo jeito.
 
 A função funciona asssim: `hcoplot(dendrograma, distâncias, k = número de grupos)`
 
