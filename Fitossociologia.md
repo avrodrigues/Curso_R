@@ -63,11 +63,11 @@ Focaremos nos dois primeiros argumentos desta função (veja a ajuda da função
 -   `comm`: é uma matriz da comunidade com parcelas nas linhas e espécies nas colunas
 -   `method`: possui cinco métodos `"collector"`, `"random"`, `"exact"`, `"coleman"`, `"rarefaction"`
 
--   `"collector"` adiciona os sítios na ordem em que eles aparecem nos dados
--   `"random"` adiciona os sítios em ordem aleatória
--   `"exact"` encontra a riqueza de espécies esperada (média),
--   `"coleman"` encontra a riqueza esperada de acordo com Coleman et al. 1982
--   `"rarefaction"` encontra a média acumuladada baseada no número de indivíduos ao invés de sítios.
+    -   `"collector"` adiciona os sítios na ordem em que eles aparecem nos dados
+    -   `"random"` adiciona os sítios em ordem aleatória
+    -   `"exact"` encontra a riqueza de espécies esperada (média),
+    -   `"coleman"` encontra a riqueza esperada de acordo com Coleman et al. 1982
+    -   `"rarefaction"` encontra a média acumuladada baseada no número de indivíduos ao invés de sítios.
 
 Para criar uma matriz de espécies por parcelas utilizamos a função `table`.
 
