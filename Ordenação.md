@@ -3,9 +3,9 @@ Ordenação
 
 O objetivo central nas análises de ordenação é reduzir a multidimensinalidade dos dados para poucas dimensões, de preferência duas ou três para que possam ser graficamente representadas.
 
-Consideramos que cada variável descritora representa uma dimensão da variação entre os objetos. Portanto, se estamos comparando comunidadades que são descritas pelas espécies, cada espécie representa uma dimensão na analise.
+Consideramos que cada variável descritora representa uma dimensão da variação entre os objetos. Portanto, se estamos comparando comunidadades que são descritas pelas espécies, cada espécie representa uma dimensão na análise.
 
-As análises então reduzem a informação total para um numero menor de dimensões e assim podemos visualizar os objetos em um gráfico para analisar o gradiente de variação entre os objetos.
+As análises, então, reduzem a informação total para um numero menor de dimensões. Assim podemos visualizar os objetos em um gráfico para analisar o gradiente de variação entre os objetos.
 
 Aqui vamos dar uma olhada em como realizar algumas dessas analises de ordenação no R. Iremos conduzir:
 
@@ -15,8 +15,6 @@ Aqui vamos dar uma olhada em como realizar algumas dessas analises de ordenaçã
 
 Análise de Componentes Princiais (PCA)
 --------------------------------------
-
-A matemática por trás da PCA tenta concentrar o máximo de informação em poucos componentes, e por isso o nome Analise dos componentes principais. A cada componente é dado um percentual de explicação da variação total onde o Primeiro componente sempre tem a maior porcentagem de explicação.
 
 Vamos continuar utilizando os dados de `dune` que usamos na [análise de agrupamento](https://avrodrigues.github.io/An%C3%A1lise_de_Agrupamento.html).
 
@@ -28,7 +26,6 @@ Utilizaremos a função `rda`. Esta função roda uma PCA quando adicionamos ape
 library(vegan)
 #PCA
 data("dune")
-data("dune.env")
 
 pca <- rda(dune)
 pca.res <- summary(pca)
@@ -62,7 +59,7 @@ pca.res$cont
     ## Proportion Explained  0.00138
     ## Cumulative Proportion 1.00000
 
-Na linha `Proportion Explained` podemos ver que os componentes principais 1 e 2 (PC1 e PC2) explicam 29,48% e 21,57%. Na linha debaixo (`Cumulative Proportion`) podemos ver que os dois componentes principais explicam 51,05% da variação total de espécies entre os sítios.
+Na linha `Proportion Explained` podemos ver que os componentes principais 1 e 2 (PC1 e PC2) explicam 29,48% e 21,57%. Na linha de baixo (`Cumulative Proportion`) podemos ver que os dois componentes principais explicam 51,05% da variação total de espécies entre os sítios.
 
 Para o gráfico da PCA usamos a função `biplot`.
 
@@ -106,3 +103,30 @@ Mas será que a alteração das espécies entre as parcelas é devida à altera�
 Este tipo de pergunta pode ser respondida com a RDA. Nela informamos duas matrizes, uma que descreve os sítios com base nas espécies e outra que descreve os sítios com base em características ambientais.
 
 A RDA então retorna como as características ambientais estão correlacionadas com os eixos da PCA que foram usadas para ordenar os sítios. Interpretamos que as variáveis ambientais que estão correlacionadas com os componentes principais são as variáveis que devem estar melhor explicando a variação entre as comunidades. Dessa maneira identificamos as variáveis ambientais que estão influenciando a variação das espécies entre os sítios.
+
+Para a RDA precisamos de duas matrizes que descrevem os sítios. Uma delas, decreve os sítios com base nas espécies. A outra matriz decreve os sítios com base nas variáveis ambientais.
+
+Para exemplificar vamos usar como matriz de espécies os dados de `dune` e a matriz ambiental será `dune.env`.
+
+``` r
+data("dune.env")
+
+str(dune.env)
+```
+
+    ## 'data.frame':    20 obs. of  5 variables:
+    ##  $ A1        : num  2.8 3.5 4.3 4.2 6.3 4.3 2.8 4.2 3.7 3.3 ...
+    ##  $ Moisture  : Ord.factor w/ 4 levels "1"<"2"<"4"<"5": 1 1 2 2 1 1 1 4 3 2 ...
+    ##  $ Management: Factor w/ 4 levels "BF","HF","NM",..: 4 1 4 4 2 2 2 2 2 1 ...
+    ##  $ Use       : Ord.factor w/ 3 levels "Hayfield"<"Haypastu"<..: 2 2 2 2 1 2 3 3 1 1 ...
+    ##  $ Manure    : Ord.factor w/ 5 levels "0"<"1"<"2"<"3"<..: 5 3 5 5 3 3 4 4 2 2 ...
+
+Vamos analisar a espessura do horizonte do solo `A1` e o tipo de uso (`Use`) tinham influência na separação dos grupos
+
+``` r
+dune.moisture <- rda(dune ~ A1 + Use, data = dune.env)
+plot(dune.moisture)
+points(dune.moisture, col = gr, pch = 16)
+```
+
+![](Ordenação_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
