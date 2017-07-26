@@ -5,7 +5,7 @@ Fitossociologia
 
 Para abordar as análises mais comuns em fitossociologia vamos utilizar os dados de ocorrência de espécies da Floresta do Seu Nico em 2001 e em 2010 que resultaram do [Desafio da Aula 2](Desafio_2.md).
 
-Para isso nomeie os resultados como `seu.nico.2001` e `seu.nico.2010`.
+Para isso, nomeie os resultados como `seu.nico.2001` e `seu.nico.2010`.
 
 Ou baixe os dois arquivos (Aqui: [2001](Seu_nico_2001.csv) e [2010](Seu_nico_2010.csv)) e carregue com o código abaixo:
 
@@ -32,9 +32,9 @@ str(seu.nico.2010)
 
 ### O que faremos?
 
-Primeiro vamos analizar o contexto geral das amostragens, verificando se há sulficiência amostral e estimando a riqueza total da área.
+Primeiro vamos analizar o contexto geral das amostragens, verificando se há sulficiência amostral e estimando a riqueza de espécies para a área.
 
-Num segundo momento, iremos dividir as comunidades de 2001 e 2010 em dois componentes: a regeneração e os adultos. Com base nesses conjuntos de dados construiremos a tabela fitossociológica, exploraremos a diversidade e similaridade taxonômica entre os componentes e entre os anos 2001 e 2010
+Num segundo momento, iremos dividir as comunidades de 2001 e 2010 em dois componentes: a regeneração e os adultos. Com base nesses conjuntos de dados construiremos a tabela fitossociológica, exploraremos a diversidade e similaridade taxonômica entre os componentes e entre os anos 2001 e 2010.
 
 Sulficiência amostral
 ---------------------
@@ -62,7 +62,12 @@ Focaremos nos dois primeiros argumentos desta função (veja a ajuda da função
 
 -   `comm`: é uma matriz da comunidade com parcelas nas linhas e espécies nas colunas
 -   `method`: possui cinco métodos `"collector"`, `"random"`, `"exact"`, `"coleman"`, `"rarefaction"`
-    -   `"exact"` encontra a riqueza de espécies esperada (média), `"coleman"` encontra a riqueza esperada de acordo com Coleman et al. 1982, e `"rarefaction"` que encontra a média acumuladada baseada no número de indivíduos ao invés de sítios.
+
+-   `"collector"` adiciona os sítios na ordem em que eles aparecem nos dados
+-   `"random"` adiciona os sítios em ordem aleatória
+-   `"exact"` encontra a riqueza de espécies esperada (média),
+-   `"coleman"` encontra a riqueza esperada de acordo com Coleman et al. 1982
+-   `"rarefaction"` encontra a média acumuladada baseada no número de indivíduos ao invés de sítios.
 
 Para criar uma matriz de espécies por parcelas utilizamos a função `table`.
 
@@ -77,13 +82,13 @@ Vamos gerar a curva de coletor para os dois anos
 plot(specaccum(floresta.2001, "collector"), main = "2001")
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ``` r
 plot(specaccum(floresta.2010, "collector"), main = "2010")
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-5-2.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-2.png)
 
 Há um problema em usar este tipo de curva, é que dependendo da ordem em que você adiciona as parcelas no gráfico você pode induzir que a curva fique estável.
 
@@ -95,13 +100,13 @@ Para isso alteramos o argumento `method` para `"random"`
 plot(specaccum(floresta.2001, "random"), main = "2001")
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 ``` r
 plot(specaccum(floresta.2010, "random"), main = "2010")
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-6-2.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-2.png)
 
 Podemos ainda criar uma visualização mais interessante para os mesmos gráficos adicionando mais alguns argumentos à função `plot`
 
@@ -109,13 +114,13 @@ Podemos ainda criar uma visualização mais interessante para os mesmos gráfico
 plot(specaccum(floresta.2001, "random"),main = "2001", col = "blue", ci.type = "polygon", ci.col = "orange")
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 
 ``` r
 plot(specaccum(floresta.2010, "random"),main = "2010", col = "blue", ci.type = "polygon", ci.col = "orange")
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-7-2.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
 
 Riqueza de espécies
 -------------------
@@ -173,7 +178,7 @@ pool <- poolaccum(floresta.2001)
 plot(pool)
 ```
 
-![](Fitossociologia_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-10-1.png)
 
 ``` r
 summary(pool, display = "jack2") # mostra os valores estimados com jacknife2
@@ -199,6 +204,21 @@ Os dados da Floresta Seu Nico já estão neste formato, só nos resta separá-la
 ``` r
 library(dplyr)
 ```
+
+    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.12).
+    ## Please reinstall dplyr to avoid random crashes or undefined behavior.
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
 ``` r
 str(seu.nico.2001)
 ```
