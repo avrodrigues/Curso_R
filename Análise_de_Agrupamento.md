@@ -13,11 +13,11 @@ Existem muitos métodos para realizar esse tipo de análise que podem ser agrupa
 
 O agrupamento então seguirá alguns passos:
 
-1 - Criar uma matriz de distãncias  
-2 - Realizar o agrupamento por diferentes métodos  
-3 - Escolher o método de agrupamento mais informativo  
-4 - Definir a linha de corte do dendrograma  
-5 - Gerar um gráfico (dendrograma) com os grupos identificados  
+1 - Criar uma matriz de distãncias
+2 - Realizar o agrupamento por diferentes métodos
+3 - Escolher o método de agrupamento mais informativo
+4 - Definir a linha de corte do dendrograma
+5 - Gerar um gráfico (dendrograma) com os grupos identificados
 
 Pacotes necessários
 -------------------
@@ -27,15 +27,6 @@ Nesta seção utilizaremos funções dos pacotes `vegan` e `cluster`. Carregue e
 ``` r
 # Pacotes
 library(vegan)
-```
-
-    ## Loading required package: permute
-
-    ## Loading required package: lattice
-
-    ## This is vegan 2.4-3
-
-``` r
 library(cluster)
 ```
 
@@ -200,7 +191,7 @@ Passo 5 - Gerar um gráfico (dendrograma) que mostre os grupos identificados pel
 
 Para gerar esse gráfico vamos utilizar uma função criada `hcoplot`por Bocard el al (2011) \[**[baixe aqui](hcoplot.R)**\]. Baixe o script da função para a pasta de trabalho do R. Quando uma função está dentro de um scrit podemos usar `source`para carregar a função sem abrir o script. Você também pode abrir o script e rodar tudo que funciona do mesmo jeito.
 
-A função funciona asssim:  
+A função funciona asssim:
 `hcoplot(dendrograma, distâncias, k = número de grupos)`
 
 A função `windows` será usada para gerar o gráfico em uma janela nova. Selecione as duas linhas e execute o código.
