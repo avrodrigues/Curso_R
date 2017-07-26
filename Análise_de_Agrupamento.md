@@ -7,17 +7,17 @@ Podemos, por exemplo, querer classificar sítios distintos de acordo com a compo
 
 Para analisarmos dados com o objetivo de classificar/agrupar necessitamos de uma matriz de dados onde as linhas referem-se aos objetos a serem classificados e as colunas aos descritores desses objetos.
 
-Basicamente, o agrupamento consiste em analisar quais objetos são mais parecidos com quais, baseado em alguma medida de distância (dsitância euclidiana, por exemplo) entre os objetos, que pode ser entendida como o grau de diferença entre os objetos. Para isso, criamos uma matriz de distâncias par a par entre os objetos. É sobre essa matriz que faremos o agrupamento dos objetos.
+Basicamente, o agrupamento consiste em analisar quais objetos são mais parecidos com quais, baseado em alguma medida de distância (distância euclidiana, por exemplo) entre os objetos, que pode ser entendida como o grau de diferença entre os objetos. Para isso, criamos uma matriz de distâncias par a par entre os objetos. É sobre essa matriz que faremos o agrupamento dos objetos.
 
 Existem muitos métodos para realizar esse tipo de análise que podem ser agrupadas em hierárquicas e não-hierarquicas. Mas aqui focaremos apenas na construção de dendrogramas a partir de métodos hierárquicos de agrupamento.
 
 O agrupamento então seguirá alguns passos:
 
-1 - Criar uma matriz de distãncias  
-2 - Realizar o agrupamento por diferentes métodos  
-3 - Escolher o método de agrupamento mais informativo  
-4 - Definir a linha de corte do dendrograma  
-5 - Gerar um gráfico (dendrograma) com os grupos identificados  
+1 - Criar uma matriz de distâncias
+2 - Realizar o agrupamento por diferentes métodos
+3 - Escolher o método de agrupamento mais informativo
+4 - Definir a linha de corte do dendrograma
+5 - Gerar um gráfico (dendrograma) com os grupos identificados
 
 Pacotes necessários
 -------------------
@@ -191,7 +191,7 @@ Passo 5 - Gerar um gráfico (dendrograma) que mostre os grupos identificados pel
 
 Para gerar esse gráfico vamos utilizar uma função criada `hcoplot`por Bocard el al (2011) \[**[baixe aqui](hcoplot.R)**\]. Baixe o script da função para a pasta de trabalho do R. Quando uma função está dentro de um scrit podemos usar `source`para carregar a função sem abrir o script. Você também pode abrir o script e rodar tudo que funciona do mesmo jeito.
 
-A função funciona asssim:  
+A função funciona asssim:
 `hcoplot(dendrograma, distâncias, k = número de grupos)`
 
 A função `windows` será usada para gerar o gráfico em uma janela nova. Selecione as duas linhas e execute o código.
