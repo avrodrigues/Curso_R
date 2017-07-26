@@ -88,7 +88,10 @@ plot(spe.euc.WPGMC, hang = -1, cex = 0.9)
 plot(spe.euc.ward, hang = -1, cex = 0.9)
 ```
 
-![](Análise_de_Agrupamento_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png) \#\# Passo 3 - Escolher o método de agrupamento mais informativo
+![](Análise_de_Agrupamento_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
+
+Passo 3 - Escolher o método de agrupamento mais informativo
+-----------------------------------------------------------
 
 Não há um método que seja melhor que outro, eles apenas agrupam os objetos de maneiras diferentes. Existem tantos métodos, porque nenhum deles consegue representar de maneira fiel as distâncias contidas na matriz de distâncias. Dessa maneira acabam perdendo informação em relação a real distância entre os sítios (distâncias euclidianas, no nosso exemplo).
 
