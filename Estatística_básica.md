@@ -8,18 +8,19 @@ Em estudos de ecologia frequentemente desejamos fazer comparações entre difere
 
 Esses testes são baseados em uma lógica que assume que os eventos do mundo real são aleatórios. Se nossas observações são diferentes do esperado (ser aleatório) consideramos isso uma evidência de que os eventos analisados não são aleatórios e, especificamente para o que estamos testando, podemos afirmar que existe uma relação, ou efeito, ou diferença.
 
-Em estatística, H0 (hipótese nula) representa a hipótese de que o mundo é aleatório e H1 a hipótese de que há relação, ou efeito, ou diferença, entre os fatores que foram observados.
+Em estatística, H0 (hipótese nula) representa a hipótese de que o evento estudado é aleatório e H1 a hipótese de que há relação (ou efeito, ou diferença) entre os fatores que foram observados.
 
-Tudo é testado em termos de probabilidade, e o valor de p mede quais são as nossas chances de errar quando afirmamos que H1 é verdadeira. Então, um valor de p de 0,05, significa que temos 5% de chance de errar com essa afirmativa, um avalor aceitavel dentro do meio biótico.
+Tudo é testado em termos de probabilidade, e o valor de p mede quais são as nossas chances de errar quando afirmamos que H1 é verdadeira. Então, um valor de p de 0,05, significa que temos 5% de chance de errar com essa afirmativa, um valor aceitavel dentro do meio biótico.
 
 Existem testes diferentes de acordo com o tipo de pergunta que você deseja responder. Se você está interessado nas diferenças entre grupos em relação a uma variável você deverá utilizar um teste para dados categóricos, como teste T e ANOVA. Se o seu interesse é na relação entre duas variáveis, você deve utilizar testes para dados contínuos, como correlação e regressão. Veja a figura:
-![](Estatística_básica_files/figure-markdown_github/Figura-Teste_de_Hipoteses.jpg)
+
+![](Figura-Teste_de_Hipoteses.jpg)
 
 Além disso, esses testes ainda podem ser divididos entre os paramétricos e os não-paramétricos.
 
-Testes paramétricos assumem uma disposição dos dados, e os testes realizados precisam atender a algumas condições para que você possa confiar no valor de p. Geralmente, nos testes paramétricos é exigido que os dados tenham distribuição normal e que a variância seja homogênea (conhecida também com homogeneidade ou homocedasticidade).
+Testes paramétricos assumem uma distribuição dos dados, e os testes realizados precisam atender a algumas condições para que você possa confiar no valor de p. Geralmente, nos testes paramétricos é exigido que os dados tenham distribuição normal e que a variância seja homogênea (conhecida também com homogeneidade ou homocedasticidade).
 
-Nos testes não-paramétricos não precisamos atender aos pressupostos de normalidade e homogeneidade, porém nesses testes há uma maior dificuldade chegarmos a valores de p baixos para amostragens pequenas, acabando sendo menos confiáveis para esse tipo de dado.
+Nos testes não-paramétricos não precisamos atender aos pressupostos de normalidade e homogeneidade, porém nesses testes há uma maior dificuldade chegarmos a valores de p baixos para amostragens pequenas, e acabam sendo menos confiáveis para esse tipo de dado.
 
 No entanto, dados ecológicos dificilmente atendem a todos os pressupostos exigidos pelos testes paramétricos, e em alguns casos violar alguma dessas condições, como a normalidade dos dados pode não ser tão grave assim se você tiver um n-amostral alto. Há muitos bons livros disponíveis que tratam tanto de estatística, como de estatística voltada as questões ecológicas. Nestes livros você pode encontrar detalhes de como escolher o melhor método para a sua questão e o que implica escolher um ou outro método.
 
@@ -89,7 +90,7 @@ boxplot(CO2$uptake ~ CO2$Type)
 legend("topright", paste("p = ",round(t$p.value,9)))
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
 
 Outro pressuposto é que os dados devem ter distribuição normal. Podemos verificar graficamente se os dados atendem a esse pressuposto com um histograma, para efeito de comparação osbserve os histogramas com dados distribuição normal e não-normal.
 
@@ -106,7 +107,7 @@ hist(normal)
 hist(nao.normal)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 Devemos verificar a normalidade dos dados de cada grupo comparado.
 
@@ -120,7 +121,7 @@ hist(quebec)
 hist(mississippi)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 Esses histogramas nada se parecem com o padrão de uma distribuição normal. Apenas com a visualização podemos afirmar que os dados violam o pressuposto de normalidade, ainda assim, podemos ainda testar a hipótese de os dados seguirem a distribuição normal pelo teste de Shapiro-Wilk. Neste teste, esperamos que a hipótese nula é que os dados são normais, ou seja, baixos valores de p indicam que os dados não são normais.
 
@@ -216,7 +217,7 @@ hist(i.vers, main = "versicolor")
 hist(i.virg, main = "virginica")
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-10-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-10-1.png)
 
 Fica claro que os dados atendem ao pressuposto de normalidade.
 
@@ -279,7 +280,7 @@ Vamos criar um boxplot para visualizar graficamente as diferenças em tamanho de
 boxplot(Sepal.Length ~ Species, data = iris, main = "Tamanho de Sépala para espécies do gênero Iris")
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-14-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-14-1.png)
 
 Teste de Kruskal-Wallis
 -----------------------
@@ -326,7 +327,7 @@ cor.test(temp, oz)
 
 O resultado indica um valor de p muito próximo a zero, confirma que há correlação entre as variáveis. O índice de correlação (r) é dado por `cor` (r = 0,7).
 
-Se criarmos um objeto com o resultado do teste podemos os resultado podem ser acessados como abaixo:
+Se criarmos um objeto com o resultado do teste, podemos acessar diretamente o valor de p e o coeficiente de correlaçao, como mostrado abaixo:
 
 ``` r
 res <- cor.test(temp, oz)
@@ -350,14 +351,12 @@ Vamos observar essa correlação num gráfico:
 plot(temp, oz)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-18-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-18-1.png)
 
 Regressão Linear
 ----------------
 
-A regressão linear pressupõe que os dados tenham distribuição normal, homogeneidade das variância dos resíduos e que a relação entre as variáveis é linear.
-
-A regressão permite gerar um modelo que prediz o valor da variável resposta em relação a um dado valor da variável de efeito. Os parâmetros dados pela regressão linear são intercepto e inclinação. A acurácia do modelo é medida com o R², quanto maior o valor, mais acurado é o modelo.
+Um modelo de regressão linear pressupõe que os dados tem distribuição normal, que a variância dos resíduos é homogênea e que a relação entre as variáveis é linear. A regressão permite gerar um modelo que prediz o valor da variável resposta em relação a um dado valor da variável de efeito. Os parâmetros dados pela regressão linear são intercepto e inclinação. A acurácia do modelo é medida com o R², quanto maior o valor, mais acurado é o modelo.
 
 Vamos conduzir uma regressão linear entre temperatura (variável efeito) e ozônio (variável resposta) para os dados de `airquality`. No R a função `lm` faz a regressão linear.
 
@@ -393,9 +392,9 @@ plot(Ozone ~ Temp, data = airquality)
 abline(mod)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-20-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-20-1.png)
 
-Vamos verificar se os dados atendem ao pressuposto de normalidade com visualizando histogramas
+Vamos verificar se os dados atendem ao pressuposto de normalidade visualizando histogramas:
 
 ``` r
 par(mfrow = c(1,2))
@@ -404,7 +403,7 @@ hist(airquality$Ozone)
 hist(airquality$Temp)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-21-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-21-1.png)
 
 Nenhuma das variáveis apresenta distribuição normal. Vamos confirmar com o teste de Shapiro-Wilk
 
@@ -439,19 +438,20 @@ b <- rnorm(100, 5, 2)
 
 mod1 <- lm(b ~ a)
 
+# Modelo com dados normais
 par(mfrow = c(2,2))
-
 plot(mod1)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-23-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-23-1.png)
 
 ``` r
+# Modelo Ozonio vs. Temperatura 
 par(mfrow = c(2,2))
 plot(mod)
 ```
 
-![](Estatística_básica_files/figure-markdown_github/unnamed-chunk-24-1.png)
+![](Estatística_básica_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-24-1.png)
 
 Nosso foco aqui é nos dois primeiros gráficos, `Residuals vs. Fitted` e `Normal Q-Q`. Em `Residuals vs. Fitted` observamos se os resíduos tem variâncias homogêneas e em `Normal Q-Q` se os dados são normais.
 
