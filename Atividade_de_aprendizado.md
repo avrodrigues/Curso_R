@@ -21,7 +21,7 @@ Comandos básicos:
 
 Atividades:
 
-1 - Depois de [baixar](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/script_inicial.R) e abrir o script no RStudio, execute todos os comandos.
+1 - Crie um novo script. Depois copie e cole o [código exemplo](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/script_inicial.R) e execute todos os comandos.
 
 2 - Observe que no campo do ambiente global foram criados objetos, separados por tipo (**data**, **values**). São listados neste campo informações básicas sobre os objetos.
 
