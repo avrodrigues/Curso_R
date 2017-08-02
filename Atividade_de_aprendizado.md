@@ -27,42 +27,41 @@ Atividades:
 
 3 - Algumas funções podem ser utilizadas para colher informações sobre os dados. Como o comprimento do objeto, as dimensões de uma tabela ou matriz, a classe a que o objeto pertence ou ainda a estrutura do objeto. Utilize as funções abaixo com todos os objetos criados pelo script para entender como elas funcionam:
 
-`length(x)`  
-`dim(x)`  
-`str(x)`  
-`class(x)`  
-`ncol(x)`  
-`nrow(x)`  
+`length(x)`
+`dim(x)`
+`str(x)`
+`class(x)` `ncol(x)`
+`nrow(x)`
 
 4 - Operações de cálculo básicas podem ser realizadas com o R utilizando os simbolos `+`, `-`, `*` e `/`. Exponenciais são precedidos de `^`.
 
 **Exemplo:**
 
-`2 * 5`  
-`10 + 50`  
-`10 / 2`  
-`2^2`  
+`2 * 5`
+`10 + 50`
+`10 / 2`
+`2^2`
 
 Essas operações podem ser utilizadas com os objetos também (`a * 2`, por exemplo) Com isso em mente realize as seguintes operações:
 
-`dados * 2`  
-`a + 10`  
-`x * 5`  
+`dados * 2`
+`a + 10`
+`x * 5`
 
 Relate o que aconteceu em cada operação. Porque uma delas deu erro?
 
-5 - Observe como se deu a criação de cada objeto presente no script. Em comum todas utilizaram o simbolo “&lt;-”, esse símbolo assinala os valores ou caracteres a um objeto. Algumas funções foram utilizadas para a criação dos objetos. Pesquise a ajuda das funções abaixo para entender como elas funcionam e se habituar a utilizar o painel de ajuda.
+5 - Observe como se deu a criação de cada objeto presente no script. Em comum todas utilizaram o simbolo `<-`, esse símbolo assinala os valores ou caracteres a um objeto. Algumas funções foram utilizadas para a criação dos objetos. Pesquise a ajuda das funções abaixo para entender como elas funcionam e se habituar a utilizar o painel de ajuda.
 
-`c`  
-`rep`  
-`as.factor`  
-`rnorm`  
-`matrix`  
-`data.frame`  
+`c`
+`rep`
+`as.factor`
+`rnorm`
+`matrix`
+`data.frame`
 
 Para acessar a ajuda digite ‘?’ antes do nome da função e execute o comando, como no exemplo:
 
-`?as.factor` 
+`?as.factor`
 
 6 - Crie um objeto do tipo data frame com nome `info`. Nomeie as colunas como abaixo e assinale as informações necessárias em cada coluna.
 
