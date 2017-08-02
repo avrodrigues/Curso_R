@@ -21,7 +21,7 @@ Comandos básicos:
 
 Atividades:
 
-1 - Crie um novo script. Depois copie e cole o [código exemplo](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/script_inicial.R) e execute todos os comandos.
+1 - Depois de [baixar](https://github.com/avrodrigues/avrodrigues.github.io/blob/master/Aula%201/script_inicial.R) e abrir o script no RStudio, execute todos os comandos.
 
 2 - Observe que no campo do ambiente global foram criados objetos, separados por tipo (**data**, **values**). São listados neste campo informações básicas sobre os objetos.
 
@@ -48,7 +48,7 @@ Essas operações podem ser utilizadas com os objetos também (`a * 2`, por exem
 `a + 10`
 `x * 5`
 
-Relate o que aconteceu em cada função. Porque uma delas deu erro?
+Relate o que aconteceu em cada operação. Porque uma delas deu erro?
 
 5 - Observe como se deu a criação de cada objeto presente no script. Em comum todas utilizaram o simbolo “&lt;-”, esse símbolo assinala os valores ou caracteres a um objeto. Algumas funções foram utilizadas para a criação dos objetos. Pesquise a ajuda das funções abaixo para entender como elas funcionam e se habituar a utilizar o painel de ajuda.
 
