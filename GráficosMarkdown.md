@@ -3,6 +3,7 @@ Gráficos
 
 > -   Histograma
 > -   Barras
+> -   Linhas
 > -   Boxplot
 > -   Pontos
 
@@ -21,7 +22,7 @@ dist.normal <- rnorm(100, mean = 5, sd = 1)
 hist(dist.normal)
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
 
 Este foi o gráfico com as opções default, podemos aprimorar a visualização de acordo com nossas preferências. Abaixo reeditei o gráfico para mostrar alguns argumentos função `hist`
 
@@ -31,7 +32,7 @@ hist(dist.normal, main = "Histograma de distribuição normal
     xlab = "", ylab = "Frequência", col = "lightgreen")
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-2-1.png)
 
 Barras
 ======
@@ -47,7 +48,7 @@ names(altura) <- paste("Pessoa", 1:20)
 barplot(altura, las = 2)
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-3-1.png)
 
 > Altere o argumento `las` entre 0 e 3 para entender que parametro gráfico ele está controlando.
 
@@ -65,7 +66,31 @@ ordenadas pela maior altura", las = 2, col = "lightgreen",
         ylim = c(0, 2.5), ylab = "Altura (m)")
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
+
+Gráfico de linhas
+=================
+
+Podemos visualizar os mesmos dados que utilizamos nos gráficos de barras utilizando gráficos de linhas.
+
+Utilizamos a função `plot` com o argumento `type` configurado com `o` ou `l`. `type = "o"` produz um gráfico de linhas com os pontos e `type = "l"` produz uma linha contínua.
+
+``` r
+plot(altura.order, type = "o")
+```
+
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+
+Aqui utilizamos a função `lines` para produzir um gráfico com mais de uma linha. Neste exemplo, incluímos uma linha com valores menores que os originais (- 0,5).
+
+``` r
+plot(altura.order, type = "l", main = "Altura de Vinte Pessoas 
+  ordenadas pela maior altura", las = 2, col = "lightgreen", 
+  ylim = c(0, 2.5), ylab = "Altura (m)")
+lines(altura.order - 0.5, type = "o")
+```
+
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 
 Boxplot
 =======
@@ -89,13 +114,13 @@ O primeiro argumento desta função é chamado de fórmula, neste caso funciona 
 boxplot(CO2$uptake ~ CO2$Type)
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
 
 ``` r
 boxplot(CO2$conc ~ CO2$Type)
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-7-2.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-2.png)
 
 ### Função Par
 
@@ -113,7 +138,7 @@ boxplot(CO2$conc ~ CO2$Type, main = "Concentração de CO2",
         col = c("lightblue", "salmon"))
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-10-1.png)
 
 Então voltamos a função `par` para a configuração original.
 
@@ -139,7 +164,7 @@ Um exemplo com os dados `iris`
 plot(iris$Petal.Length, iris$Petal.Width)
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-11-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-13-1.png)
 
 Abaixo uma versão do gráfico que colore as espécies e adiciona diferentes tipos de pontos a elas.
 
@@ -151,4 +176,4 @@ plot(iris$Petal.Length, iris$Petal.Width,
      ylab = "Largura da pétala")
 ```
 
-![](GráficosMarkdown_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](GráficosMarkdown_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-14-1.png)
