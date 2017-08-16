@@ -1,5 +1,6 @@
 ## Aula 4
 
-[Agrupamento (cluster analysis)](Análise_de_Agrupamento.md)  
-[Ordenação (PCA, RDA, NMDS)](Ordenação.md)  
-Desafio Final  
+Fitossociologia](Fitossociologia.md)  
+[Estatística Básica](Estatística_básica.md)  
+
+Desafio Semanal 
