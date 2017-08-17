@@ -41,7 +41,7 @@ library(dplyr)
 Função `select`
 ---------------
 
-Para exemplificar as funções disponíveis neste pacote utilizaremos dados morfológicos de plantas da Floresta Ombrófila Densa de Santa Catarina, que você pode baixar neste [link](tabela_de_medições.csv).
+Para exemplificar as funções disponíveis neste pacote utilizaremos dados morfológicos de plantas da Floresta Ombrófila Densa de Santa Catarina, que você pode baixar neste [link](Tabela_de_medições.csv).
 
 Baixe e importe os dados no R.
 
