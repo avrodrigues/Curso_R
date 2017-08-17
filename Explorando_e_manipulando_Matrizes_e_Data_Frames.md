@@ -5,10 +5,10 @@ Ao importar uma planilha de dados para o R é importante conferir como os dados 
 
 Algumas funções do R podem nos auxiliar a entender como os dados estão estruturados.
 
-`dim` mostra a dimensão (quantas linhas e quantas colunas) dos dados
-`class` indica a classe do objeto que contém o conjunto de dados. Também pode ser aplicado para apenas uma coluna
-`length` mostra o comprimento de um objeto. Quando aplicado a um vetor, quantos valores o vetor contém. Quando aplicado a um data frame mostra quantas colunas ele possui. Quando aplicado a um objeto do tipo matriz mostra quantos valores a matriz completa contém
-`str` mostra a estrutura dos dados. Essa função agrupa outras funções acima indicando a dimensão, a classe do conjunto de dados completo e a classe de cada variável (coluna)
+`dim` mostra a dimensão (quantas linhas e quantas colunas) dos dados  
+`class` indica a classe do objeto que contém o conjunto de dados. Também pode ser aplicado para apenas uma coluna  
+`length` mostra o comprimento de um objeto. Quando aplicado a um vetor, quantos valores o vetor contém. Quando aplicado a um data frame mostra quantas colunas ele possui. Quando aplicado a um objeto do tipo matriz mostra quantos valores a matriz completa contém  
+`str` mostra a estrutura dos dados. Essa função agrupa outras funções acima indicando a dimensão, a classe do conjunto de dados completo e a classe de cada variável (coluna)  
 
 Carregue os dados de `airquality` e explore as funções citadas acima:
 
