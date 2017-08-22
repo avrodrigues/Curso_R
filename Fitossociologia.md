@@ -49,7 +49,7 @@ Carregue o pacote `vegan`. Caso não tenha ele instalado no computador, instale 
 library(vegan)
 ```
 
-Para atestar se a comunidade foi bem amostrada quanto ao número de espécies podemos gerar um gráfico de curva de acúmulo de espécies (ou curva do coletor). No `vegan`, isso é implementado com a função `specaccum`.
+Para atestar se a comunidade foi bem amostrada quanto ao número de espécies podemos gerar um gráfico com a curva de acúmulo de espécies (ou curva do coletor). No `vegan`, isso é implementado com a função `specaccum`.
 
 ``` r
 str(specaccum)
@@ -90,7 +90,7 @@ plot(specaccum(floresta.2010, "collector"), main = "2010")
 
 ![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-2.png)
 
-Há um problema em usar este tipo de curva, é que dependendo da ordem em que você adiciona as parcelas no gráfico você pode induzir que a curva fique estável.
+Há um problema em usar este tipo de curva. É que dependendo da ordem em que você adiciona as parcelas no gráfico você pode induzir que a curva fique estável.
 
 Uma solução para este problema é criar uma curva que aleatorize a ordem de inclusão das parcelas para gerar uma média da riqueza e um desvio padrão a cada parcela inclusa.
 
@@ -111,13 +111,15 @@ plot(specaccum(floresta.2010, "random"), main = "2010")
 Podemos ainda criar uma visualização mais interessante para os mesmos gráficos adicionando mais alguns argumentos à função `plot`
 
 ``` r
-plot(specaccum(floresta.2001, "random"),main = "2001", col = "blue", ci.type = "polygon", ci.col = "orange")
+plot(specaccum(floresta.2001, "random"),main = "2001", col = "blue",
+     ci.type = "polygon", ci.col = "orange")
 ```
 
 ![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
 
 ``` r
-plot(specaccum(floresta.2010, "random"),main = "2010", col = "blue", ci.type = "polygon", ci.col = "orange")
+plot(specaccum(floresta.2010, "random"),main = "2010", col = "blue", 
+     ci.type = "polygon", ci.col = "orange")
 ```
 
 ![](Fitossociologia_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-2.png)
@@ -148,7 +150,7 @@ specnumber(floresta.2010)
 
 Para estimar quantas espécies as comunidades possuiam em 2001 e 2010 podemos usar duas funções diferentes `specpool` ou `poolaccum`.
 
-A primeira função retorna apenas o número de espécies total estimado, enquanto com a função `poolaccum` podemos criar gráfico com modelos de acumulação com base em cada método de estimação.
+A primeira função (`specpool`) retorna apenas o número de espécies total estimado, enquanto com a função `poolaccum` podemos criar gráfico com modelos de acumulação com base em cada método de estimação.
 
 Veja abaixo:
 
@@ -193,9 +195,9 @@ Para fazer a tabela fitossociológica vamos utilizar um script que contém uma f
 
 Com essas funções criaremos a tabela fitossociológica para os anos de 2001 e 2010 na Fazenda Seu Nico, divididos em componente arbóreo e regeneração.
 
-Na sequência compararemos a similaridade florística das comunidades entre os anos e entre os componentes.
+Na sequência, compararemos a similaridade florística das comunidades entre os anos e entre os componentes.
 
-\[Baixe o Script\] e abra com o R. No script há a descrição das funções, como utilizá-las e como os dados devem estar tabelados para que a função funcione. Carregue as funções, como descrito no Script.
+[Baixe o Script](fitoR.R) e abra com o R. No script há a descrição das funções, como utilizá-las e como os dados devem estar tabelados para que a função funcione. Carregue as funções, como descrito no Script.
 
 Em resumo, precisamos de uma tabela da comunidade onde as linhas são as obervações (indivíduos) e no mínimo três colunas, `parc`, `spp`, `cap` ou `dap`. Acrescente mais colunas se tiver caules multiplos, como `cap1` `cap2` `cap3`ou `dap1` `dap2` `dap3`.
 
@@ -203,23 +205,7 @@ Os dados da Floresta Seu Nico já estão neste formato, só nos resta separá-la
 
 ``` r
 library(dplyr)
-```
 
-    ## Warning: Installed Rcpp (0.12.10) different from Rcpp used to build dplyr (0.12.12).
-    ## Please reinstall dplyr to avoid random crashes or undefined behavior.
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 str(seu.nico.2001)
 ```
 
