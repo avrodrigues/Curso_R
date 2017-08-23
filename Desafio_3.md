@@ -18,7 +18,7 @@ Com base no arquivo "Tabela\_de\_medições" teste se há correlação entre as 
 
 Compare:
 
-Clorofila vs. Espessura Foliar
+Clorofila vs. Espessura Foliar  
 Volume do Ramo vs. Peso Seco do Ramo
 
 Poste o script utilizado nas analises no Classroom até a data limite.
