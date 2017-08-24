@@ -8,7 +8,7 @@ Testes de hipóteses
 
 Dados: Floresta do Seu Nico
 
-Você deve conduzir um teste T para testar a hipotese (H0) de que não há diferença entre a riqueza de espécies amostradas em 2001 e 2010 na floresta Seu Nico. Como estamos comparando as mesmas parcelas amostradas em anos diferentes devemos utilizar o teste T pareado, pois as amostras não são independentes.
+Você deve conduzir um teste T para testar a hipotese (H0) de que não há diferença entre a riqueza de espécies amostradas em [2001](Seu_nico_2001.csv) e [2010](Seu_nico_2010.csv) na floresta Seu Nico. Como estamos comparando as mesmas parcelas amostradas em anos diferentes devemos utilizar o teste T pareado, pois as amostras não são independentes.
 
 Veja a ajuda da função para encontrar o argumento que realiza o teste t pareado.
 
