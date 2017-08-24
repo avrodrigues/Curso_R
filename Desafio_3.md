@@ -14,7 +14,7 @@ Veja a ajuda da função para encontrar o argumento que realiza o teste t paread
 
 ### Correlação e regressão linear
 
-Com base no arquivo "Tabela\_de\_medições" teste se há correlação entre as variáveis descritas abaixo e realize a regressão linear indicando qual a acurácia do modelo (R²). Apresente o resultado em um gráfico de pontos, indicando a linha do modelo de regressão e adicione uma legenda com o valor de R² para o modelo.
+Com base no arquivo [Tabela_de_medições]("Tabela_de_medições.csv") teste se há correlação entre as variáveis descritas abaixo e realize a regressão linear indicando qual a acurácia do modelo (R²). Apresente o resultado em um gráfico de pontos, indicando a linha do modelo de regressão e adicione uma legenda com o valor de R² para o modelo.
 
 Compare:
 
