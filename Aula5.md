@@ -2,5 +2,5 @@
 
 [Agrupamento (cluster analysis)](Análise_de_Agrupamento.md)  
 [Ordenação (PCA, RDA, NMDS)](Ordenação.md)  
-[Transformações](Trasformações.md)
-Desafio Final  
+[Transformações](Transformações.md)  
+[Desafio Final](Desafio_Final.md)
