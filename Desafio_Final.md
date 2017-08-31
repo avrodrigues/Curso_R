@@ -4,14 +4,14 @@ Desafio Final
 Ordenação
 ---------
 
-Neste desafio você vai analisar com oas variáveis climáticas estão relaciondas com as comunidades vegetais do Vale do Itajai.
+Neste desafio você vai analisar como as variáveis climáticas estão relaciondas com as comunidades vegetais do Vale do Itajai.
 
-Para isso eu foneço duas matrizes para você:
+Para isso eu forneço duas matrizes para você:
 
 1 - matriz de abundância (64 parcelas x 358 espécies) [espécies](vale do itajai.csv)  
 2 - matriz ambiental (64 parcelas x 22 variáveis climáticas) [ambiente](env_world_Clim_v2.csv)
 
-Conduza uma rda entre a matriz de abundância e a matriz ambiental. Antes disso você deve selecionar algumas variáveis ambientais. Escolha 5 variáveis ambientais que você imagina que podem afetar as comunidades e realize a analise com base apenas nessas variavéis escolhidas.
+Conduza uma RDA entre a matriz de abundância e a matriz ambiental. Antes disso você deve selecionar algumas variáveis ambientais. Escolha 5 variáveis ambientais que você imagina que podem afetar as comunidades e realize a analise com base apenas nessas variavéis escolhidas.
 
 A lista abaixo explica o que cada código de variável ambiental significa:
 
