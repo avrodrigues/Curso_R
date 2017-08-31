@@ -1,9 +1,9 @@
 Ordenação
 ================
 
-O objetivo central nas análises de ordenação é reduzir a multidimensinalidade dos dados para poucas dimensões, de preferência duas ou três para que possam ser graficamente representadas.
+O objetivo central nas análises de ordenação é reduzir a multidimensionalidade dos dados para poucas dimensões, de preferência duas ou três para que possam ser graficamente representadas.
 
-Consideramos que cada variável descritora representa uma dimensão da variação entre os objetos. Portanto, se estamos comparando comunidadades que são descritas pelas espécies, cada espécie representa uma dimensão na análise.
+Consideramos que cada variável descritora representa uma dimensão da variação entre os objetos. Portanto, se estamos comparando comunidades que são descritas pelas espécies, cada espécie representa uma dimensão na análise.
 
 As análises, então, reduzem a informação total para um numero menor de dimensões. Assim podemos visualizar os objetos em um gráfico para analisar o gradiente de variação entre os objetos.
 
@@ -130,3 +130,117 @@ points(dune.moisture, col = gr, pch = 16)
 ```
 
 ![](Ordenação_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
+
+Escalonamento multidimensional não-métrico (NMDS)
+=================================================
+
+A NMDS é um método de ordenação um pouco diferente dos anteriores (PCA e RDA). Nela é priorizada o ranque entre as parcelas e não a distancia entre elas. Por isso é chamado de escalonamento não-métrico.
+
+Diferente das outras ordenações a NMDS não procura pela maior variação dos dados, ela tenta reproduzir a posição das parcelas no espaço multidimensional dentro do numero de dimensões preestabelecida pelo usuário, geralmete 2 dimensões.
+
+Assim, os eixos da NMDS não trazem a porcentagem de explicação da variação.
+
+Como exemplo, vamos ordenar os dados de `dune` através de uma NMDS. Para isso usamos a função `metaMDS` onde informamos o data frame e o numero de dimensões que desejamos representar os dados.
+
+``` r
+## NMDS
+nmds <- metaMDS(dune,k = 2) #k indica o numero de dimensões do resultado
+```
+
+    ## Run 0 stress 0.1192678 
+    ## Run 1 stress 0.1183186 
+    ## ... New best solution
+    ## ... Procrustes: rmse 0.02027464  max resid 0.06497679 
+    ## Run 2 stress 0.1192678 
+    ## Run 3 stress 0.1192679 
+    ## Run 4 stress 0.1192678 
+    ## Run 5 stress 0.2035424 
+    ## Run 6 stress 0.1192679 
+    ## Run 7 stress 0.1192678 
+    ## Run 8 stress 0.1192678 
+    ## Run 9 stress 0.1183186 
+    ## ... New best solution
+    ## ... Procrustes: rmse 4.852052e-05  max resid 0.000158534 
+    ## ... Similar to previous best
+    ## Run 10 stress 0.1192679 
+    ## Run 11 stress 0.1183187 
+    ## ... Procrustes: rmse 6.340163e-05  max resid 0.0001999829 
+    ## ... Similar to previous best
+    ## Run 12 stress 0.1183186 
+    ## ... Procrustes: rmse 1.263606e-05  max resid 4.162915e-05 
+    ## ... Similar to previous best
+    ## Run 13 stress 0.2192849 
+    ## Run 14 stress 0.1183186 
+    ## ... Procrustes: rmse 1.262848e-05  max resid 4.094768e-05 
+    ## ... Similar to previous best
+    ## Run 15 stress 0.119268 
+    ## Run 16 stress 0.1922241 
+    ## Run 17 stress 0.1192685 
+    ## Run 18 stress 0.1886532 
+    ## Run 19 stress 0.1183189 
+    ## ... Procrustes: rmse 7.650532e-05  max resid 0.0002448978 
+    ## ... Similar to previous best
+    ## Run 20 stress 0.1812992 
+    ## *** Solution reached
+
+``` r
+plot(nmds)
+```
+
+![](Ordenação_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+
+Vamos colorir os pontos de acordo com o agrupamento realizado anteriormente.
+
+``` r
+plot(nmds)
+points(nmds, pch = 16, col = gr)
+```
+
+![](Ordenação_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-8-1.png)
+
+Note que o resultado produzido é bem similar ao das analises anteriores, no sentido de que os pontos continuam agrupados. Desta vez, no entanto, parece que conseguimos distinguir melhor os agrupamentos dentro do gradiente.
+
+A NMDS também permite comparar o gradiente de variação das parcelas em relação a variáveis ambientais. Isso é implementado com a função `envfit` do pacote vegan. Essa função, além de demostrar a correlação entre as variaveis ambientais e os gradientes (NMDS1 e NMDS2), essa função testa a correlação e retorna valores de significância das variáveis.
+
+Vamos ver como funciona, utilizando os mesmo dados que usamos na RDA.
+
+``` r
+ef <- envfit(nmds ~ A1 + Use, data = dune.env)
+plot(nmds)
+points(nmds, pch = 16, col = gr)
+plot(ef)
+```
+
+![](Ordenação_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-9-1.png)
+
+Utilizando a NMDS junto da função `envfit` podemos chegar as mesmas conclusões que a RDA apresentou. Portanto, as analises prozuzem resultados similares e optar por uma ou outra depende de um maior entendimento de como cada analise funciona e do que você está tentando respoder.
+
+O resuldado das correlações está contido no objeto `ef`
+
+``` r
+ef
+```
+
+    ## 
+    ## ***VECTORS
+    ## 
+    ##      NMDS1   NMDS2    r2 Pr(>r)  
+    ## A1 0.96473 0.26325 0.365  0.022 *
+    ## ---
+    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    ## Permutation: free
+    ## Number of permutations: 999
+    ## 
+    ## ***FACTORS:
+    ## 
+    ## Centroids:
+    ##               NMDS1   NMDS2
+    ## UseHayfield -0.1568  0.3248
+    ## UseHaypastu -0.0411 -0.3370
+    ## UsePasture   0.2854  0.0844
+    ## 
+    ## Goodness of fit:
+    ##         r2 Pr(>r)
+    ## Use 0.1871   0.14
+    ## Permutation: free
+    ## Number of permutations: 999
